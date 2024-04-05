@@ -31,13 +31,12 @@ function App() {
   const searchForArtist = async (e) =>{
     e.preventDefault();
 
-    const data = await fetch(`https://api.spotify.com/v1/search?q=${artistName}&type=album&limit=1`, {
-        method: "GET",
+    let values = await fetch(`https://api.spotify.com/v1/search?q=${artistName}&type=track&limit=1`, {
         headers: {
             Authorization:`Bearer ${token}`
          }
     })
-    const oppen = data.json()
+    let oppen = values.json();
     console.log(oppen)
   }
 

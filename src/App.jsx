@@ -2,7 +2,7 @@ import { useState, useEffect } from "react"
 
 function App() {
   const CLIENT_ID = "afef5d35bda94486a7b3661b54e2cdcb"
-  const REDIRECT_URI = "http://127.0.0.1:5173"
+  const REDIRECT_URI = "http://localhost:5173/home"
   const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize"
   const RESPONSE_TYPE = "token"
 
@@ -31,16 +31,14 @@ function App() {
   const searchForArtist = async (e) =>{
     e.preventDefault();
 
-    let values = await fetch(`https://api.spotify.com/v1/search?q=${artistName}&type=track&limit=1`, {
+    let values = await fetch(`https://api.spotify.com/v1/search?q=${artistName}&type=track&limit=5`, {
         headers: {
             Authorization:`Bearer ${token}`
          }
     })
-    let oppen = values.json();
+    let oppen = await values.json();
     console.log(oppen)
   }
-
-
   return (
       <div className="App">
           <header className="App-header">

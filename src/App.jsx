@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import { useDispatch } from "react-redux"
+import { storeToken } from "./store_actions/idSlice"
 
 function App() {
   const CLIENT_ID = "afef5d35bda94486a7b3661b54e2cdcb"
@@ -9,6 +10,7 @@ function App() {
 
   const [token, setToken] = useState("")
   const [artistName, setName] = useState("")
+  let dispatch = useDispatch()
   useEffect(() => {
       const hash = window.location.hash
       let token = window.localStorage.getItem("token")
@@ -21,6 +23,7 @@ function App() {
       }
 
       setToken(token)
+      dispatch(storeToken(token))
 
   }, [])
 

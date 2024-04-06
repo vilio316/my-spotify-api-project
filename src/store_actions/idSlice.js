@@ -12,6 +12,6 @@ export const tokenSlice = createSlice({
     }
 })
 
-export const access_token = state.token.value
-export const {storeToken} = state.actions
+export const access_token = (state) => state.token.value
+export const {storeToken} = tokenSlice.actions
 export default tokenSlice.reducer

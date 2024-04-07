@@ -1,13 +1,12 @@
 import { useState, useEffect } from "react"
 import { useDispatch } from "react-redux"
-import { storeToken } from "./store_actions/idSlice"
+import { storeToken } from "./store_slices/idSlice"
 
 function App() {
   const CLIENT_ID = "afef5d35bda94486a7b3661b54e2cdcb"
   const REDIRECT_URI = "http://localhost:5173/home"
   const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize"
   const RESPONSE_TYPE = "token"
-  console.log(window.location)
   const [token, setToken] = useState("")
   const [artistName, setName] = useState("")
   let dispatch = useDispatch()
@@ -40,7 +39,7 @@ function App() {
             Authorization:`Bearer ${token}`
          }
     })
-    let oppen = values.json();
+    let oppen = await values.json();
     console.log(oppen)
   }
   return (
@@ -55,6 +54,7 @@ function App() {
             <input type = "text" placeholder="Enter Artist Name" onChange={(e)=> setName(e.target.value)}/>
             <button type="submit">SUBMIT, Fein</button>
           </form>
+          <a href="/italawa">Click Me!</a>
                   <button onClick={logout}>Logout</button></>}
           </header>
       </div>

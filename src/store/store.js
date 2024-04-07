@@ -6,7 +6,7 @@ import { persistStore, persistReducer,   FLUSH,
     PURGE,
     REGISTER, } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
-import tokenReducer from "../store_actions/idSlice.js"
+import tokenReducer from "../store_slices/idSlice.js"
 const persistConfig = {
     key: "root",
     storage,

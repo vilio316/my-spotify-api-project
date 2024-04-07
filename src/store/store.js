@@ -11,7 +11,6 @@ const persistConfig = {
     key: "root",
     storage,
 }
-
 const persistedReducer = persistReducer(persistConfig, tokenReducer)
 export const store = configureStore({
     reducer:{

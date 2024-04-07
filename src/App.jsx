@@ -7,7 +7,7 @@ function App() {
   const REDIRECT_URI = "http://localhost:5173/home"
   const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize"
   const RESPONSE_TYPE = "token"
-
+  console.log(window.location)
   const [token, setToken] = useState("")
   const [artistName, setName] = useState("")
   let dispatch = useDispatch()

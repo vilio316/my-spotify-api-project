@@ -1,13 +1,16 @@
 import { useState, useEffect } from "react"
+import { useDispatch } from "react-redux"
+import { storeToken } from "./store_actions/idSlice"
 
 function App() {
   const CLIENT_ID = "afef5d35bda94486a7b3661b54e2cdcb"
-  const REDIRECT_URI = "http://127.0.0.1:5173"
+  const REDIRECT_URI = "http://localhost:5173/home"
   const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize"
   const RESPONSE_TYPE = "token"
-
+  console.log(window.location)
   const [token, setToken] = useState("")
   const [artistName, setName] = useState("")
+  let dispatch = useDispatch()
   useEffect(() => {
       const hash = window.location.hash
       let token = window.localStorage.getItem("token")
@@ -20,6 +23,7 @@ function App() {
       }
 
       setToken(token)
+      dispatch(storeToken(token))
 
   }, [])
 
@@ -30,16 +34,15 @@ function App() {
 
   const searchForArtist = async (e) =>{
     e.preventDefault();
+
     let values = await fetch(`https://api.spotify.com/v1/search?q=${artistName}&type=track&limit=1`, {
         headers: {
             Authorization:`Bearer ${token}`
          }
     })
-    let response = await values.json()
-    console.log(response.tracks.items[0].album.images[0].url)
+    let oppen = values.json();
+    console.log(oppen)
   }
-
-
   return (
       <div className="App">
           <header className="App-header">

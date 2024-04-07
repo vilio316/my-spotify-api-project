@@ -30,14 +30,13 @@ function App() {
 
   const searchForArtist = async (e) =>{
     e.preventDefault();
-
     let values = await fetch(`https://api.spotify.com/v1/search?q=${artistName}&type=track&limit=1`, {
         headers: {
             Authorization:`Bearer ${token}`
          }
     })
-    let oppen = values.json();
-    console.log(oppen)
+    let response = await values.json()
+    console.log(response.tracks.items[0].album.images[0].url)
   }
 
 

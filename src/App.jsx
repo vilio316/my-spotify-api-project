@@ -9,6 +9,7 @@ function App() {
   const RESPONSE_TYPE = "token"
   const [token, setToken] = useState("")
   const [artistName, setName] = useState("")
+  const [fetchResult , changeFetchResult] = useState({})
   let dispatch = useDispatch()
   useEffect(() => {
       const hash = window.location.hash
@@ -20,7 +21,7 @@ function App() {
           window.location.hash = ""
           window.localStorage.setItem("token", token)
       }
-
+      
       setToken(token)
       dispatch(storeToken(token))
 
@@ -34,13 +35,14 @@ function App() {
   const searchForArtist = async (e) =>{
     e.preventDefault();
 
-    let values = await fetch(`https://api.spotify.com/v1/search?q=${artistName}&type=track&limit=1`, {
+    let values = await fetch(`https://api.spotify.com/v1/search?q=${artistName}&type=track&limit=5`, {
         headers: {
             Authorization:`Bearer ${token}`
          }
     })
     let oppen = await values.json();
     console.log(oppen)
+    changeFetchResult({...fetchResult, oppen})
   }
   return (
       <div className="App">
@@ -57,6 +59,7 @@ function App() {
           <a href="/italawa">Click Me!</a>
                   <button onClick={logout}>Logout</button></>}
           </header>
+          
       </div>
   );
 }

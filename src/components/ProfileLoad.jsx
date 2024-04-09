@@ -2,27 +2,30 @@ import { useLoaderData } from "react-router-dom";
 import { useSelector } from 'react-redux'
 import { access_token } from "../store_slices/idSlice";
 import { useEffect } from "react";
+import { useFindUserQuery, useFindUserDetailsQuery } from "../loaders/loaders";
 
-export default function Profile(){
-    let selected = useSelector(access_token);
+export default function ProfileUI(){
+    const { data, error, isLoading } = useFindUserQuery('4aawyAB9vmqN3uQ7FjRGTy')
+ 
+   
+    return(
+        <>
+        <p>Why?</p>
+        
+        <ProfileShow/>
+        </>
+    )
+}
 
-        const loadProfile= async(value) =>{
-            let request = await fetch(`https://api.spotify.com/v1/me`, {
-                headers:{
-                    Authorization: `Bearer ${value}`
-                }
-            });
-            let response = await request.json();
-        }
-
+export function ProfileShow(){
+    const { data, error, isLoading } = useFindUserDetailsQuery("artists");
 
     return(
         <>
-        <h2>Your Profile</h2> 
-        <a href={'/'}>Home Page</a>
-        <button onClick={()=> {
-            console.log(loadProfile(selected))
-        }}></button>
+        <p>Rahh!</p>
+        {data? <p>
+            {data.display_name}
+        </p>: <p>Null</p>}
         </>
     )
 }

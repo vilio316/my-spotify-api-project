@@ -12,12 +12,15 @@ export const spotifyApi = createApi({
     }),
     endpoints: (builder)=> ({
         findUserDetails: builder.query({
-            query: (type) => `/me`,
+            query: () => `/me/playlists`,
         }),
         findUser: builder.query({
             query: (id) => `/albums/${id}`,
         }),
+        getPlaylist : builder.query({
+            query: (id) => `playlists/${id}`
+        })
     })
 })
 
-export const { useFindUserQuery, useFindUserDetailsQuery } = spotifyApi
+export const { useFindUserQuery, useFindUserDetailsQuery, useGetPlaylistQuery } = spotifyApi

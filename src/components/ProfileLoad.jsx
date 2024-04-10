@@ -18,14 +18,22 @@ export default function ProfileUI(){
 }
 
 export function ProfileShow(){
-    const { data, error, isLoading } = useFindUserDetailsQuery("artists");
+    const { data, error, isLoading } = useFindUserDetailsQuery();
 
     return(
         <>
         <p>Rahh!</p>
-        {data? <p>
+        <div>{data?
+        <>
             {data.display_name}
-        </p>: <p>Null</p>}
+            <div>{data.items.map((playlist) => (
+                <p key={playlist.id}>
+                    <a href={`/playlists/${playlist.id}`}>{playlist.name}</a></p>
+            ))}</div>
+            </>
+        : <>
+            <p>Loading...</p>
+        </>  }</div>
         </>
     )
 }

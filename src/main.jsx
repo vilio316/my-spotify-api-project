@@ -6,6 +6,7 @@ import ProfileUI from './components/ProfileLoad.jsx'
 import { PersistGate } from 'redux-persist/integration/react'
 import { perStore, store } from './store/store.js'
 import { Provider } from 'react-redux'
+import { Playlist } from './components/PlaylistLoad.jsx'
 
 const routes = createBrowserRouter([
   {
@@ -15,6 +16,9 @@ const routes = createBrowserRouter([
   {
     path: '/italawa',
     element: <ProfileUI/>,
+  }, {
+    path: '/playlists/:playID',
+    element: <Playlist/>
   }
 ])
 

@@ -14,6 +14,15 @@ export function Playlist(){
         }
         return (Math.ceil(popTotal / array.length))
     }
+    const makeTimeString = (ms_value) =>{
+        let second_val = Math.ceil(Number(ms_value / 1000))
+        let minutes = Math.floor(second_val / 60)
+        let seconds = second_val - (minutes * 60)
+        if (seconds < 10){
+            seconds = "0" + String(seconds)
+        }
+         return (`${minutes}:${seconds}`)
+    }
 
     return(
         <>
@@ -25,6 +34,8 @@ export function Playlist(){
         {data.tracks.items.map((track) => (
             <div key={track.track.id}>
                 <p>{track.track.name}</p>
+                <p> Duration: {makeTimeString(track.track.duration_ms)}</p>
+                <span></span>
             </div>
         ))}
         <p>Popularity Score: {popScore(data.tracks.items)}</p>

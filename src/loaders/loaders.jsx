@@ -15,7 +15,7 @@ export const spotifyApi = createApi({
             query: () => `/me/playlists`,
         }),
         findUser: builder.query({
-            query: (id) => `/albums/${id}`,
+            query: (id) => `/me`,
         }),
         getPlaylist : builder.query({
             query: (id) => `playlists/${id}`

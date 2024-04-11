@@ -10,7 +10,7 @@ export default function ProfileUI(){
    
     return(
         <>
-        <p>Why?</p>
+        <h2><u>Your Profile Data</u></h2>
         
         <ProfileShow/>
         </>
@@ -22,7 +22,7 @@ export function ProfileShow(){
 
     return(
         <>
-        <p>Rahh!</p>
+        <p>Your Playlists: </p>
         <div>{data?
         <>
             {data.display_name}

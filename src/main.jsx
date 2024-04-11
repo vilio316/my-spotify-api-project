@@ -10,11 +10,11 @@ import { Playlist } from './components/PlaylistLoad.jsx'
 
 const routes = createBrowserRouter([
   {
-    path: '/home',
+    path: '/',
     element: <App/>,
   },
   {
-    path: '/italawa',
+    path: '/user-playlists',
     element: <ProfileUI/>,
   }, {
     path: '/playlists/:playID',

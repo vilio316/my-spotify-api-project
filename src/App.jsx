@@ -4,7 +4,7 @@ import { storeToken } from "./store_slices/idSlice"
 
 function App() {
   const CLIENT_ID = "afef5d35bda94486a7b3661b54e2cdcb"
-  const REDIRECT_URI = "http://localhost:5173/home"
+  const REDIRECT_URI = window.location.href;
   const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize"
   const RESPONSE_TYPE = "token"
   const [token, setToken] = useState("")
@@ -41,25 +41,27 @@ function App() {
          }
     })
     let oppen = await values.json();
-    console.log(oppen)
-    changeFetchResult({...fetchResult, oppen})
+    changeFetchResult(oppen);
   }
   return (
       <div className="App">
           <header className="App-header">
-              <h1>Spotify React</h1>
+              <h1>SongInformer v1.0</h1>
+              </header>
+             
               {!token ?
-                  <a href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}>Login
+               <div style={{width:'100%', height:'80vh', display:"grid"}}>
+                  <a style={{borderRadius:"1.5rem", color: 'black', backgroundColor:"green", fontSize:"1.5rem", placeSelf:"center", padding: '0.5rem'}} href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}>Login
                       to Spotify</a>
+                      </div>
+
                   : <>
                   <form onSubmit={searchForArtist}>
             <input type = "text" placeholder="Enter Artist Name" onChange={(e)=> setName(e.target.value)}/>
             <button type="submit">SUBMIT, Fein</button>
           </form>
-          <a href="/italawa">Click Me!</a>
-                  <button onClick={logout}>Logout</button></>}
-          </header>
-          
+          <a href="/user-playlists">Click Me!</a>
+                  <button style={{outline: "none", borderRadius:"1rem", padding: '0.5rem', display:"block"}} onClick={logout}>Log Out</button></>}
       </div>
   );
 }

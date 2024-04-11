@@ -13,7 +13,7 @@ export default function SongInfo(){
         {data? <>
         <p>{data.name}</p>
         {data.artists.map((artiste) => (
-            <p key={artiste.id}><i>{artiste.name}, </i></p>
+            <span key={artiste.id}><i>{artiste.name} - </i></span>
         ))}
         <p> Duration : {makeTimeString(data.duration_ms) }</p>
         <p> Popularity Score: {data.popularity}</p>

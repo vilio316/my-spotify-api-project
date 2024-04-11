@@ -7,6 +7,7 @@ import { PersistGate } from 'redux-persist/integration/react'
 import { perStore, store } from './store/store.js'
 import { Provider } from 'react-redux'
 import { Playlist } from './components/PlaylistLoad.jsx'
+import SongInfo from './components/SongInformation.jsx'
 
 const routes = createBrowserRouter([
   {
@@ -19,6 +20,9 @@ const routes = createBrowserRouter([
   }, {
     path: '/playlists/:playID',
     element: <Playlist/>
+  }, {
+    path: 'song/:songID',
+    element : <SongInfo/>
   }
 ])
 

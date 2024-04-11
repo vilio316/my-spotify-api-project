@@ -7,7 +7,7 @@ import { persistStore, persistReducer,   FLUSH,
     REGISTER, } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 import tokenReducer from "../store_slices/idSlice.js"
-import { spotifyApi } from "../loaders/loaders.jsx";
+import { spotifyApi } from "../loaders/apiSlice.jsx";
 const persistConfig = {
     key: "root",
     storage,

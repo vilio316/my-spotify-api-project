@@ -2,7 +2,7 @@ import { useLoaderData } from "react-router-dom";
 import { useSelector } from 'react-redux'
 import { access_token } from "../store_slices/idSlice";
 import { useEffect } from "react";
-import { useFindUserQuery, useFindUserDetailsQuery } from "../loaders/loaders";
+import { useFindUserQuery, useFindUserDetailsQuery } from "../loaders/apiSlice";
 
 export default function ProfileUI(){
     const { data, error, isLoading } = useFindUserQuery('4aawyAB9vmqN3uQ7FjRGTy')

@@ -8,21 +8,26 @@ import { perStore, store } from './store/store.js'
 import { Provider } from 'react-redux'
 import { Playlist } from './components/PlaylistLoad.jsx'
 import SongInfo from './components/SongInformation.jsx'
+import { Error } from './components/Error.jsx'
 
 const routes = createBrowserRouter([
   {
     path: '/',
     element: <App/>,
+    errorElement: <Error/>
   },
   {
     path: '/user-playlists',
     element: <ProfileUI/>,
+    errorElement: <Error/>
   }, {
     path: '/playlists/:playID',
-    element: <Playlist/>
+    element: <Playlist/>,
+    errorElement: <Error/>
   }, {
     path: 'song/:songID',
-    element : <SongInfo/>
+    element : <SongInfo/>,
+    errorElement: <Error/>
   }
 ])
 

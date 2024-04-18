@@ -35,7 +35,7 @@ export function ProfileShow(){
             ))}</div>
             </>
         : <>
-            <p>Loading...</p>
+            <p>Loading</p>
         </>  }</div>
         </>
     )

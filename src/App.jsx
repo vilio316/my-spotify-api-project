@@ -2,16 +2,15 @@ import { useState, useEffect } from "react"
 import { useDispatch } from "react-redux"
 import { storeToken } from "./store_slices/idSlice"
 import { Header } from "./components/Header";
-import { SearchResults } from "./components/SearchResults";
+import { SearchProcessor} from "./components/SearchResults";
 
 function App() {
-  const CLIENT_ID = "afef5d35bda94486a7b3661b54e2cdcb"
+  const CLIENT_ID = import.meta.env.VITE_CLIENT_ID ;
   const REDIRECT_URI = window.location.href;
   const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize"
   const RESPONSE_TYPE = "token"
   const [token, setToken] = useState("")
   const [artistName, setName] = useState("")
-  const [fetchResult , changeFetchResult] = useState({})
   let dispatch = useDispatch()
   useEffect(() => {
       const hash = window.location.hash
@@ -34,36 +33,24 @@ function App() {
       window.localStorage.removeItem("token")
   }
 
-  const searchForArtist = async (e) =>{
-    e.preventDefault();
-
-    let values = await fetch(`https://api.spotify.com/v1/search?q=${artistName}&type=track&limit=5`, {
-        headers: {
-            Authorization:`Bearer ${token}`
-         }
-    })
-    let oppen = await values.json();
-    changeFetchResult(oppen);
-  }
   return (
       <div className="App">
           <header className="App-header">
               <h1>SongInformer v1.0</h1>
+              <Header/>
               </header>
              
               {!token ?
               <>
-              <Header/>
                <div style={{width:'100%', height:'80vh', display:"grid"}}>
                   <a style={{borderRadius:"1.5rem", color: 'black', backgroundColor:"green", fontSize:"1.5rem", placeSelf:"center", padding: '0.5rem'}} href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}>Login
                       to Spotify</a>
                       </div>
                 </>
                   : <>
-                  <form onSubmit={searchForArtist}>
-            <input type = "text" placeholder="Enter Artist Name" onChange={(e)=> setName(e.target.value)}/>
-            <SearchResults search_term={artistName}/>
-            <button type="submit">SUBMIT, Fein</button>
+                  <form>
+            <input type = "text" placeholder="Enter Search Term" style={{outline: "none", border:"2px solid green", borderRadius:"1.25rem", fontSize:"1.5rem", padding: '0.25rem 0.5rem'}} onChange={(e)=> {if(e.target.value.length > 0){setName(e.target.value)}}}/>
+            <SearchProcessor search={artistName}/>
           </form>
           <a href="/user-playlists">Click Me!</a>
                   <button style={{outline: "none", borderRadius:"1rem", padding: '0.5rem', display:"block"}} onClick={logout}>Log Out</button></>}

@@ -22,8 +22,11 @@ export const spotifyApi = createApi({
         }),
         getSongDetails: builder.query({
             query: (id) => `/tracks/${id}`
+        }), 
+        findSearchItem: builder.query({
+            query: (term) => `/search?q=${term}&type=track&limit=10`
         })
     })
 })
 
-export const { useFindUserQuery, useFindUserDetailsQuery, useGetPlaylistQuery, useGetSongDetailsQuery } = spotifyApi
+export const { useFindUserQuery, useFindUserDetailsQuery, useGetPlaylistQuery, useGetSongDetailsQuery, useFindSearchItemQuery } = spotifyApi

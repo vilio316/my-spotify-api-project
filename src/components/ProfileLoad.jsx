@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux'
 import { access_token } from "../store_slices/idSlice";
 import { useEffect } from "react";
 import { useFindUserQuery, useFindUserDetailsQuery } from "../loaders/apiSlice";
+import { Header } from "./Header";
 
 export default function ProfileUI(){
     const { data, error, isLoading } = useFindUserQuery('4aawyAB9vmqN3uQ7FjRGTy')
@@ -10,6 +11,7 @@ export default function ProfileUI(){
    
     return(
         <>
+         <Header/>
         <h2><u>Your Profile Data</u></h2>
         
         <ProfileShow/>
@@ -22,6 +24,7 @@ export function ProfileShow(){
 
     return(
         <>
+       
         <p>Your Playlists: </p>
         <div>{data?
         <>

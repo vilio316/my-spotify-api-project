@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useGetPlaylistQuery } from "../loaders/apiSlice";
+import { Header } from "./Header";
 
 export const popScore = (array) => {
     let popTotal = 0
@@ -28,6 +29,7 @@ export function Playlist(){
 
     return(
         <>
+        <Header/>
         {data ? <>
         <p>{data.name}</p>
         <p><i>{data.description}</i></p>

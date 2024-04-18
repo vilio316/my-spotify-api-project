@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react"
 import { useDispatch } from "react-redux"
 import { storeToken } from "./store_slices/idSlice"
+import { Header } from "./components/Header";
+import { SearchResults } from "./components/SearchResults";
 
 function App() {
   const CLIENT_ID = "afef5d35bda94486a7b3661b54e2cdcb"
@@ -50,14 +52,17 @@ function App() {
               </header>
              
               {!token ?
+              <>
+              <Header/>
                <div style={{width:'100%', height:'80vh', display:"grid"}}>
                   <a style={{borderRadius:"1.5rem", color: 'black', backgroundColor:"green", fontSize:"1.5rem", placeSelf:"center", padding: '0.5rem'}} href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}>Login
                       to Spotify</a>
                       </div>
-
+                </>
                   : <>
                   <form onSubmit={searchForArtist}>
             <input type = "text" placeholder="Enter Artist Name" onChange={(e)=> setName(e.target.value)}/>
+            <SearchResults search_term={artistName}/>
             <button type="submit">SUBMIT, Fein</button>
           </form>
           <a href="/user-playlists">Click Me!</a>

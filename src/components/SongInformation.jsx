@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom'
 import { useGetSongDetailsQuery } from '../loaders/apiSlice';
 import { makeTimeString } from "../components/PlaylistLoad"
+import { Header } from './Header';
 
 export default function SongInfo(){
     const id_value = useParams()
@@ -10,11 +11,14 @@ export default function SongInfo(){
 
     return(
         <>
+        <Header/>
         {data? <>
-        <p>{data.name}</p>
+        <span style={{fontSize: "2.5rem", fontWeight:"bold"}}>{data.name}</span>
         {data.artists.map((artiste) => (
-            <span key={artiste.id}><i>{artiste.name} - </i></span>
+           <p key={artiste.id}>Artist(s): <span><i>{artiste.name} - </i></span></p>
         ))}
+        <img src={data.album.images[1].url} alt={`${data.name}`} style={{display:"block", borderRadius:"1.25rem"}}/>
+        <p>Release Date: {data.album.release_date}</p>
         <p> Duration : {makeTimeString(data.duration_ms) }</p>
         <p> Popularity Score: {data.popularity}</p>
         </>

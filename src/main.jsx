@@ -9,6 +9,8 @@ import { Provider } from 'react-redux'
 import { Playlist } from './components/PlaylistLoad.jsx'
 import SongInfo from './components/SongInformation.jsx'
 import { Error } from './components/Error.jsx'
+import ArtistData from './components/ArtistInfo.jsx'
+import { Album_Info } from './components/Album_Details.jsx'
 
 const routes = createBrowserRouter([
   {
@@ -28,6 +30,17 @@ const routes = createBrowserRouter([
     path: 'song/:songID',
     element : <SongInfo/>,
     errorElement: <Error/>
+  },
+  {
+    path: 'artists/:artistID',
+    element: <ArtistData/>,
+    errorElement: <Error/>
+  },
+  {
+    path: 'albums/:ID',
+    element: <Album_Info/>,
+    errorElement: <Error/>
+
   }
 ])
 

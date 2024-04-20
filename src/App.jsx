@@ -37,7 +37,6 @@ function App() {
       <div className="App">
           <header className="App-header">
               <h1>SongInformer v1.0</h1>
-              <Header/>
               </header>
              
               {!token ?
@@ -48,6 +47,7 @@ function App() {
                       </div>
                 </>
                   : <>
+                  <Header/>
                   <form>
             <input type = "text" placeholder="Enter Search Term" style={{outline: "none", border:"2px solid green", borderRadius:"1.25rem", fontSize:"1.5rem", padding: '0.25rem 0.5rem'}} onChange={(e)=> {if(e.target.value.length > 0){setName(e.target.value)}}}/>
             <SearchProcessor search={artistName}/>

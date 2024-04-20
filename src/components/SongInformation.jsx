@@ -6,7 +6,7 @@ import { Header } from './Header';
 export default function SongInfo(){
     const id_value = useParams()
     const parameter = id_value.songID;
-
+    
     const {data, error} = useGetSongDetailsQuery(parameter)
 
     return(
@@ -15,7 +15,7 @@ export default function SongInfo(){
         {data? <>
         <span style={{fontSize: "2.5rem", fontWeight:"bold"}}>{data.name}</span>
         <p>Artists: {data.artists.map((artiste) => (
-            <span key={artiste.id}><i>{artiste.name} - </i></span>
+            <span key={artiste.id}><a style={{textDecoration: "none", fontStyle:"italic"}} href={`/artists/${artiste.id}`}>{artiste.name} - </a></span>
         ))}</p>
         <img src={data.album.images[1].url} alt={`${data.name}`} style={{display:"block", borderRadius:"1.25rem"}}/>
         <p>Release Date: {data.album.release_date}</p>

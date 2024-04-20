@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useGetPlaylistQuery } from "../loaders/apiSlice";
+import { useGetPlaylistQuery, useSearchArtistQuery } from "../loaders/apiSlice";
 import { Header } from "./Header";
 
 export const popScore = (array) => {
@@ -19,6 +19,10 @@ export const makeTimeString = (ms_value) =>{
      return (`${minutes}:${seconds}`)
 }
 
+function Artist(){
+    const {data} = useSearchArtistQuery("Taylor Swift")
+}
+
 export function Playlist(){
     const play_id = useParams()
     console.log(play_id)
@@ -30,10 +34,11 @@ export function Playlist(){
     return(
         <>
         <Header/>
+        <Artist/>
         {data ? <>
         <p>{data.name}</p>
         <p><i>{data.description}</i></p>
-        <img src={data.images[0].url} alt={data.name}/>
+        <img src={data.images[1].url} alt={data.name} style={{borderRadius:"1.5rem", opacity: "0.8"}}/>
         <p>Items : {data.tracks.items.length} songs</p>
         {data.tracks.items.map((track) => (
             <div key={track.track.id}>

@@ -23,10 +23,32 @@ export const spotifyApi = createApi({
         getSongDetails: builder.query({
             query: (id) => `/tracks/${id}`
         }), 
+        searchArtist : builder.query({
+            query: (term) => `/search?q=${term}&type=artist&limit=12` 
+        }),
         findSearchItem: builder.query({
-            query: (term) => `/search?q=${term}&type=track&limit=10`
+            query: (term) => `/search?q=${term}&type=track,album&limit=15`
+        }), 
+        getArtist: builder.query({
+            query: (id) => `/artists/${id}`
+        }),
+        getArtistAlbums : builder.query({
+            query: (id) => `/artists/${id}/albums?limit=10`
+        }), 
+        fetchAlbum : builder.query({
+            query: (id) => `/albums/${id}`
         })
     })
 })
 
-export const { useFindUserQuery, useFindUserDetailsQuery, useGetPlaylistQuery, useGetSongDetailsQuery, useFindSearchItemQuery } = spotifyApi
+export const { 
+    useFindUserQuery, 
+    useFindUserDetailsQuery, 
+    useGetPlaylistQuery, 
+    useGetSongDetailsQuery, 
+    useFindSearchItemQuery, 
+    useGetArtistQuery,
+    useGetArtistAlbumsQuery,
+    useSearchArtistQuery,
+    useFetchAlbumQuery
+ } = spotifyApi

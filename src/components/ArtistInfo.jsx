@@ -15,8 +15,8 @@ export default function ArtistData(){
             <div style={{display:'grid', gridTemplateColumns:'auto auto auto auto auto', width:"90%"}}>
                 {data.items.map((item) => (
                     <div key={item.id} style={{padding:"0.75rem", margin:'0.25rem', borderRadius:"1.25rem"}}>
-                        <img src={item.images[1].url} style={{borderRadius:"1.25rem", width:"75%"}}/>
-                        <p><a href={`/albums/${item.id}`}>{item.name}</a></p>
+                        <img src={item.images[1].url} style={{borderRadius:"1.25rem", width:"75%", maxHeight:"15rem"}}/>
+                        <p><a href={`/albums/${item.id}`} style={{width: '90%', height:"3.5rem", textOverflow:"ellipsis", display:"block", overflow:"hidden"}}>{item.name}</a></p>
                         <p>
                             <span>{item.artists[0].name}</span>
                             <span style={{padding:"0 0.25rem", fontSize: "0.75rem"}}>{item.release_date}</span>

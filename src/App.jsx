@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { useDispatch } from "react-redux"
-import { storeToken } from "./store_slices/idSlice"
+import { clearToken, storeToken } from "./store_slices/idSlice"
 import { Header } from "./components/Header";
 import { SearchProcessor} from "./components/SearchResults";
 
@@ -25,7 +25,6 @@ function App() {
       
       setToken(token)
       dispatch(storeToken(token))
-
   }, [])
 
   const logout = () => {

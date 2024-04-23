@@ -19,36 +19,27 @@ export const makeTimeString = (ms_value) =>{
      return (`${minutes}:${seconds}`)
 }
 
-function Artist(){
-    const {data} = useSearchArtistQuery("Taylor Swift")
-}
-
 export function Playlist(){
     const play_id = useParams()
-    console.log(play_id)
-
     const {data} = useGetPlaylistQuery(play_id.playID)
-
-    
 
     return(
         <>
         <Header/>
-        <Artist/>
         {data ? <>
-        <p>{data.name}</p>
+        <h2>{data.name}</h2>
         <p><i>{data.description}</i></p>
-        <img src={data.images[1].url} alt={data.name} style={{borderRadius:"1.5rem", opacity: "0.8"}}/>
-        <p>Items : {data.tracks.items.length} songs</p>
+        <img src={data.images[0].url} alt={data.name} style={{borderRadius:"1.5rem", opacity: "0.8"}}/>
+        <p>Items : <b>{data.tracks.items.length}</b> songs</p>
         {data.tracks.items.map((track) => (
             <div key={track.track.id}>
                 <p><a href={`/song/${track.track.id}`}>{track.track.name}</a></p>
                 <p> Duration: {makeTimeString(track.track.duration_ms)}</p>
-                <span></span>
             </div>
         ))}
         <p>Popularity Score: {popScore(data.tracks.items)}</p>
-        </> : <p>Loading... Please wait a moment</p>}
+        </> : 
+        <p>Loading... Please wait a moment</p>}
         </>
     )
 }

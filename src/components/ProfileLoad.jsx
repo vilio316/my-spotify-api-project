@@ -25,7 +25,7 @@ export function ProfileShow(){
     return(
         <>
        
-        <p>Your Playlists: </p>
+        <h3>Your Playlists: </h3>
         <div>{data?
         <>
             {data.display_name}

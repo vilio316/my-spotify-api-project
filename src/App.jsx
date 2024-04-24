@@ -1,35 +1,38 @@
 import { useState, useEffect } from "react"
-import { useDispatch } from "react-redux"
-import { clearToken, storeToken } from "./store_slices/idSlice"
+import { useDispatch, useSelector } from "react-redux"
+import { access_token, clearToken, storeToken } from "./store_slices/idSlice"
 import { Header } from "./components/Header";
 import { SearchProcessor} from "./components/SearchResults";
+
+export const logout = () => {
+    dis
+    window.localStorage.removeItem("token")
+}
 
 function App() {
   const CLIENT_ID = import.meta.env.VITE_CLIENT_ID ;
   const REDIRECT_URI = window.location.href;
   const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize"
   const RESPONSE_TYPE = "token"
-  const [token, setToken] = useState("")
+  const [tokenVal, setToken] = useState("")
   const [artistName, setName] = useState("")
-  let dispatch = useDispatch()
+  let dispatch = useDispatch();
+  let token = useSelector(access_token)
+
   useEffect(() => {
       const hash = window.location.hash
-      let token = window.localStorage.getItem("token")
-
-      if (!token && hash) {
+      if (token.length < 1 && hash) {
           token = hash.substring(1).split("&").find(elem => elem.startsWith("access_token")).split("=")[1]
-
+          console.log(token)
           window.location.hash = ""
-          window.localStorage.setItem("token", token)
       }
-      
       setToken(token)
       dispatch(storeToken(token))
   }, [])
 
   const logout = () => {
       setToken("")
-      window.localStorage.removeItem("token")
+      dispatch(storeToken(''))
   }
 
   return (
@@ -48,6 +51,7 @@ function App() {
                   : <>
                   <Header/>
                   <form>
+                  <h2>Search for Anything Here: </h2>
             <input type = "text" placeholder="Enter Search Term" style={{outline: "none", border:"2px solid green", borderRadius:"1.25rem", fontSize:"1.5rem", padding: '0.25rem 0.5rem'}} onChange={(e)=> {if(e.target.value.length > 0){setName(e.target.value)}}}/>
             <SearchProcessor search={artistName}/>
           </form>

@@ -12,7 +12,9 @@ export function Album_Info(){
         <Header/>
         {data ? <>
         <div style={{display: 'grid', gridTemplateColumns: "25% 50%"}}>
-            <img src = {data.images[1].url} style={{borderRadius:"1.25rem"}}/>
+            <div style={{justifyContent:"center", alignContent:"center"}}>
+            <img src = {data.images[1].url} style={{borderRadius:"1.25rem", width:"80%"}}/>
+            </div>
             <div style={{alignSelf:"center"}}>
                 <h2>{data.name}</h2>
                 <p>Artists: {data.artists.map((artiste) => (
@@ -24,18 +26,16 @@ export function Album_Info(){
         </div>
         <div style={{padding: "0.5rem"}}>
             {data.tracks.items.map((track)=> (
-                <>
-                <div style={{display:"grid", gridTemplateColumns:"5% auto"}}>
-                    <p>{data.tracks.items.indexOf(track) + 1}</p>
+                <div style={{display:"grid", gridTemplateColumns:"5% auto"}} key={track.id}>
+                    <p>{data.tracks.items.indexOf(track) + 1}.</p>
                     <div>
                     <a href={`/song/${track.id}`}>{track.name}</a>
                     <p>Duration: {makeTimeString(track.duration_ms)}</p>
                     </div>
                     </div>
-                    </>
                 ))}
         </div>
-        </> : <>{error? <p>{error.data.message.status}: {error.data.error.message}</p> : <p>Loading...</p>}</>}
+        </> : <>{error? <p>{error.data.error.status}: {error.data.error.message}</p> : <p>Loading...</p>}</>}
         </>
     )
 }

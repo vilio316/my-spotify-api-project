@@ -1,4 +1,5 @@
 import { useFindSearchItemQuery } from "../loaders/apiSlice";
+import { SongFromSearch } from "./SongComponents";
 
 export function SearchResults(props){
     let search_term = props.search_term;
@@ -9,9 +10,7 @@ export function SearchResults(props){
         {search_term.length > 0 ? <>
         <h2>Search Results:</h2>
             {data ? <div>{data.tracks.items.map((item)=> (
-            <div key={item.id}>
-                <p><a href={`/song/${item.id}`}>{item.name} - {item.artists[0].name}</a></p>
-            </div>
+            <SongFromSearch object={item}/>
         ))} </div>: <p>There aren't any great matches for your search</p>}
         </> : <p>Please Enter Search Term</p>}
         </>

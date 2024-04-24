@@ -16,7 +16,7 @@ export default function ArtistData(){
                 {data.items.map((item) => (
                     <div key={item.id} style={{padding:"0.75rem", margin:'0.25rem', borderRadius:"1.25rem"}}>
                         <img src={item.images[1].url} style={{borderRadius:"1.25rem", width:"75%", maxHeight:"15rem"}}/>
-                        <p><a href={`/albums/${item.id}`} style={{width: '90%', height:"3.5rem", textOverflow:"ellipsis", display:"block", overflow:"hidden"}}>{item.name}</a></p>
+                        <p style={{ overflow:"hidden"}}><a href={`/albums/${item.id}`} style={{width: '90%', height:"3.5rem", textOverflow:"ellipsis", display:"block",}}>{item.name}</a></p>
                         <p>
                             <span>{item.artists[0].name}</span>
                             <span style={{padding:"0 0.25rem", fontSize: "0.75rem"}}>{item.release_date}</span>
@@ -37,8 +37,11 @@ export default function ArtistData(){
       {data ? 
         <>
         <div style={{display: "grid", gridTemplateColumns:"25% 50%"}}>
-         <img src={data.images[2].url} style={{borderRadius: '50%', padding:"0.5rem"}}></img>
-         <div>
+            <div style={{justifyContent:"right"}}>
+         <img src={data.images[2].url} style={{borderRadius: '50%', padding:"0.5rem", width: '70%'}}></img>
+         </div>
+         <div style={{alignContent:"center"}}>
+
         <h2>{data.name}</h2>
         <p>Genres: {data.genres.map((genre)=> (
             <span key={genre} style={{textTransform: 'capitalize', padding: '0 0.125rem'}}>{genre}-</span>

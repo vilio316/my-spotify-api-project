@@ -16,11 +16,17 @@ export default function SongInfo(){
         <p>Artists: {data.artists.map((artiste) => (
             <span key={artiste.id}><a style={{textDecoration: "none", fontStyle:"italic"}} href={`/artists/${artiste.id}`}>{artiste.name} - </a></span>
         ))}</p>
-        <img src={data.album.images[1].url} alt={`${data.name}`} style={{display:"block", borderRadius:"1.25rem"}}/>
+        <div style={{display:'grid', gridTemplateColumns:"25% 50%" }}>
+            <div style={{justifyContent:"center", justifyItems:"center", display:"grid", alignContent:"center"}}>
+        <img src={data.album.images[1].url} alt={`${data.name}`} style={{display:"block", borderRadius:"1.25rem", width:"75%"}}/>
+        </div>
+        <div style={{alignItems:"center", alignContent:"center", fontSize: "1.25rem"}}>
         <p>Album : <a href={`/albums/${data.album.id}`}>{data.album.name}</a></p>
         <p>Release Date: {data.album.release_date}</p>
         <p> Duration : {makeTimeString(data.duration_ms) }</p>
         <p> Popularity Score: {data.popularity}</p>
+        </div>
+        </div>
         </>
         : <>
         {error ? <p>

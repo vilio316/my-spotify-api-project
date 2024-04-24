@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { useFetchAlbumQuery, useGetArtistAlbumsQuery } from "../loaders/apiSlice";
 import { Header } from "./Header";
 import { makeTimeString } from "./PlaylistLoad";
+import { SongInAlbum } from "./SongComponents";
 
 export function Album_Info(){
     const id = useParams();
@@ -26,13 +27,7 @@ export function Album_Info(){
         </div>
         <div style={{padding: "0.5rem"}}>
             {data.tracks.items.map((track)=> (
-                <div style={{display:"grid", gridTemplateColumns:"5% auto"}} key={track.id}>
-                    <p>{data.tracks.items.indexOf(track) + 1}.</p>
-                    <div>
-                    <a href={`/song/${track.id}`}>{track.name}</a>
-                    <p>Duration: {makeTimeString(track.duration_ms)}</p>
-                    </div>
-                    </div>
+            <SongInAlbum object={track} key={track.id}/>
                 ))}
         </div>
         </> : <>{error? <p>{error.data.error.status}: {error.data.error.message}</p> : <p>Loading...</p>}</>}

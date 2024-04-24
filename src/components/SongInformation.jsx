@@ -27,6 +27,11 @@ export default function SongInfo(){
         <p> Popularity Score: {data.popularity}</p>
         </div>
         </div>
+        <div>
+            <h2>Song Preview: </h2>
+                <audio src={data.preview_url} controls controlsList='nodownload' />
+                    </div>
+            <h3><a href={data.external_urls.spotify}>Listen on Spotify</a></h3>
         </>
         : <>
         {error ? <p>

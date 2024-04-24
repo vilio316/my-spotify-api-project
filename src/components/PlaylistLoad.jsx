@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useGetPlaylistQuery, useSearchArtistQuery } from "../loaders/apiSlice";
 import { Header } from "./Header";
+import { SongFromSearch } from "./SongComponents";
 
 export const popScore = (array) => {
     let popTotal = 0
@@ -32,10 +33,7 @@ export function Playlist(){
         <img src={data.images[0].url} alt={data.name} style={{borderRadius:"1.5rem", opacity: "0.8"}}/>
         <p>Items : <b>{data.tracks.items.length}</b> songs</p>
         {data.tracks.items.map((track) => (
-            <div key={track.track.id}>
-                <p><a href={`/song/${track.track.id}`}>{track.track.name}</a></p>
-                <p> Duration: {makeTimeString(track.track.duration_ms)}</p>
-            </div>
+          <SongFromSearch object = {track.track} key={track.track.id}/>
         ))}
         <p>Popularity Score: {popScore(data.tracks.items)}</p>
         </> : 

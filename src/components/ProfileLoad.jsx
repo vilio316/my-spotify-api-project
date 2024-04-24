@@ -6,9 +6,7 @@ import { useFindUserQuery, useFindUserDetailsQuery } from "../loaders/apiSlice";
 import { Header } from "./Header";
 
 export default function ProfileUI(){
-    const { data, error, isLoading } = useFindUserQuery('4aawyAB9vmqN3uQ7FjRGTy')
  
-   
     return(
         <>
          <Header/>
@@ -29,9 +27,20 @@ export function ProfileShow(){
         <div>{data?
         <>
             {data.display_name}
-            <div>{data.items.map((playlist) => (
-                <p key={playlist.id}>
+            <div>
+                {data.items.map((playlist) => (
+                <div key={playlist.id} style={{display:"grid", gridTemplateColumns:"20% auto", alignContent:"center"}}>
+                <div>
+                    <img src={playlist.images[0].url} style={{
+                        width: "75%",
+                        borderRadius: "1.25rem",
+                    }}/>
+                </div>
+                <div>
+                                    <p style={{fontSize: "1.5rem"}}> 
                     <a href={`/playlists/${playlist.id}`}>{playlist.name}</a></p>
+                </div> 
+                </div>   
             ))}</div>
             </>
         : <>

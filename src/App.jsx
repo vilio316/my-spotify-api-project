@@ -55,9 +55,14 @@ function App() {
             <input type = "text" placeholder="Enter Search Term" style={{outline: "none", border:"2px solid green", borderRadius:"1.25rem", fontSize:"1.5rem", padding: '0.25rem 0.5rem'}} onChange={(e)=> {if(e.target.value.length > 0){setName(e.target.value)}}}/>
             <SearchProcessor search={artistName}/>
           </form>
-          <a href="/user-playlists">Click Me!</a>
-                  <button style={{outline: "none", borderRadius:"1rem", padding: '0.5rem', display:"block"}} onClick={logout}>Log Out</button></>}
+          <p>
+          <a href="/user-playlists">Your User Profile: </a>
+          </p>
+                  <button style={{outline: "none", borderRadius:"1rem", padding: '0.5rem', display:"block"}} onClick={logout}>Log 
+                  Out</button></>}
+        
       </div>
+
   );
 }
 

@@ -32,10 +32,10 @@ export function Playlist(){
         <p><i>{data.description}</i></p>
         <img src={data.images[0].url} alt={data.name} style={{borderRadius:"1.5rem", opacity: "0.8"}}/>
         <p>Items : <b>{data.tracks.items.length}</b> songs</p>
+        <p>Popularity Score: <b>{popScore(data.tracks.items)}</b></p>
         {data.tracks.items.map((track) => (
           <SongFromSearch object = {track.track} key={track.track.id}/>
         ))}
-        <p>Popularity Score: {popScore(data.tracks.items)}</p>
         </> : 
         <p>Loading... Please wait a moment</p>}
         </>

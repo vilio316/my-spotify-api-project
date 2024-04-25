@@ -27,11 +27,16 @@ export function SongInAlbum(props){
     let object = props.object
 
     return(
-         <div style={{display:"grid", gridTemplateColumns:"5% auto"}} key={object.id}>
+         <div style={{display:"grid", gridTemplateColumns:"50% auto", alignContent:"center", alignItems:"center"}} key={object.id}>
                     <div>
                     <a href={`/song/${object.id}`}>{object.name}</a>
-                    <p>Duration: {makeTimeString(object.duration_ms)}</p>
+                    <p>
+                    {object.artists.map((artiste) => (
+            <span style={{fontSize:'0.75rem'}} key={artiste.id}><a style={{textDecoration: "none", fontStyle:"italic"}} href={`/artists/${artiste.id}`}>{artiste.name} - </a></span>
+        ))}
+        </p>
                     </div>
+                    <p>{makeTimeString(object.duration_ms)}</p>
     </div>
     )
 }

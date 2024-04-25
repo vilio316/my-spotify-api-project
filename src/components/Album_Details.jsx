@@ -27,7 +27,10 @@ export function Album_Info(){
         </div>
         <div style={{padding: "0.5rem"}}>
             {data.tracks.items.map((track)=> (
-            <SongInAlbum object={track} key={track.id}/>
+            <div style={{display: "grid", gridTemplateColumns:"5% auto"}} key={track.id}>
+            <p>{data.tracks.items.indexOf(track) + 1}.</p>
+            <SongInAlbum object={track}/>
+            </div>
                 ))}
         </div>
         </> : <>{error? <p>{error.data.error.status}: {error.data.error.message}</p> : <p>Loading...</p>}</>}

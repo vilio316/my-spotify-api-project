@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom'
 import { useGetSongDetailsQuery } from '../loaders/apiSlice';
 import { makeTimeString } from "../components/PlaylistLoad"
 import { Header } from './Header';
+import logo from '../assets/sp_lg_2.jfif'
 
 export default function SongInfo(){
     const id_value = useParams()
@@ -31,7 +32,11 @@ export default function SongInfo(){
             <h2>Song Preview: </h2>
                 <audio src={data.preview_url} controls controlsList='nodownload' />
                     </div>
-            <h3><a href={data.external_urls.spotify}>Listen on Spotify</a></h3>
+            <div style={{display: 'grid', gridTemplateColumns:"3rem auto", alignItems:"center"}}>
+                <img src={logo} style={{width: '2rem', borderRadius:"0.5rem"}}></img>
+               <p style={{fontSize: "1.5rem"}}> <a href={data.external_urls.spotify}>Listen on Spotify</a>
+            </p>
+            </div>
         </>
         : <>
         {error ? <p>

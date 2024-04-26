@@ -35,7 +35,7 @@ export function ProfileShow(){
             {data.display_name}
             <div>
                 {data.items.map((playlist) => (
-                <div key={playlist.id} style={{display:"grid", gridTemplateColumns:"20% auto", alignContent:"center", margin: '0.5rem 0'}}>
+                <div key={playlist.id} style={{display:"grid", gridTemplateColumns:"20% auto", alignContent:"center", alignItems:"center", margin: '0.5rem 0'}}>
                 <div>
                     <img src={playlist.images[0].url} style={{
                         width: "75%",

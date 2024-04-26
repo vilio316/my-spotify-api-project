@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useFindUserQuery } from "../loaders/apiSlice"
 import { useNavigate } from "react-router-dom";
-import { logout } from "../App";
+
 
 export function Header(){
     const {data} = useFindUserQuery();

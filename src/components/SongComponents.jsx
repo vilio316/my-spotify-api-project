@@ -5,9 +5,14 @@ export function SongFromSearch(props){
 
     return(
         <>
-        <div style={{display: "grid", gridTemplateColumns:"auto 70% auto", alignContent:"center", alignItems:"center", padding:"0.5rem 0.25rem"}}>
+        <div style={
+            {
+                display: "grid", gridTemplateColumns:"10% 70% auto", alignContent:"center", alignItems:"center", 
+                padding:"0.5rem 0.25rem"
+             }
+                }>
             <div>
-                <img src={object.album.images[2].url} alt={object.name} style={{width: "90%"}}></img>
+                <img src={object.album.images[1].url} alt={object.name} style={{width: "90%",}}></img>
             </div>
         <div key={object.id}  style={
             {padding: '0.5rem'}

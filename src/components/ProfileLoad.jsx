@@ -2,7 +2,7 @@ import { useLoaderData } from "react-router-dom";
 import { useSelector } from 'react-redux'
 import { access_token } from "../store_slices/idSlice";
 import { useEffect } from "react";
-import { useFindUserQuery, useFindUserDetailsQuery } from "../loaders/apiSlice";
+import { useFindUserQuery, useFindUserDetailsQuery, useFindUserTopItemsQuery } from "../loaders/apiSlice";
 import { Header } from "./Header";
 
 export default function ProfileUI(){
@@ -19,6 +19,7 @@ export default function ProfileUI(){
             <a href={data.external_urls.spotify}>Spotify</a>
         </>: <p>Loading...</p>}
         <ProfileShow/>
+        <GetUserTop/>
         </>
     )
 }
@@ -49,8 +50,36 @@ export function ProfileShow(){
             ))}</div>
             </>
         : <>
-            <p>Loading</p>
+            <p>Loading...</p>
         </>  }</div>
         </>
     )
 }
+
+ function GetUserTop(){
+let {data, error} = useFindUserTopItemsQuery('medium_term');
+
+return(
+    <>
+    {data? <>
+    <div>
+        <h2>Your Top Songs</h2>
+        <div style={{display:"grid",gridTemplateColumns:"auto auto auto auto auto",
+        padding: '0.5rem'
+    }}>
+        {data.items.map((item) => (
+            <div key={item.id}>
+                <div>
+                <img src={item.album.images[0].url} alt={item.name} style={{width: '75%'}}/>
+                </div>
+                <div>
+                <p style={{width:"90%", textAlign:"left", }}>{item.name}</p>
+                    </div>
+                </div>
+        ))}
+        </div>
+    </div>
+    </> : <>{error? <p>{error.data.error.message}</p> : <p>Loading...</p>}</>}
+    </>
+)
+ }

@@ -19,7 +19,7 @@ export function Header(){
                 borderRadius:"1.25rem",
                 textAlign: "right"
                 }}>
-        <a href={`/`}>{data.display_name}</a>
+        <a>{data.display_name}</a>
         </p>
         {state ?
         <div style={{position: "absolute", right: '0', top: "1.5rem", zIndex:"2", padding:"0.25rem", backgroundColor:"gray", borderRadius:"1.25rem" }}>

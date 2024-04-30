@@ -27,7 +27,7 @@ export const spotifyApi = createApi({
             query: (term) => `/search?q=${term}&type=artist&limit=12` 
         }),
         findSearchItem: builder.query({
-            query: (term) => `/search?q=${term}&type=track,album&limit=15`
+            query: (term) => `/search?q=${term}&type=track,album&limit=20`
         }), 
         getArtist: builder.query({
             query: (id) => `/artists/${id}`

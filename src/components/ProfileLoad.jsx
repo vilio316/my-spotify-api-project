@@ -39,7 +39,6 @@ export function ProfileShow(){
                 <div>
                     <img src={playlist.images[0].url} style={{
                         width: "75%",
-                        borderRadius: "1.25rem",
                     }}/>
                 </div>
                 <div>

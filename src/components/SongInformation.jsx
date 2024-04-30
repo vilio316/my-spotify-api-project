@@ -14,7 +14,9 @@ export default function SongInfo(){
         <Header/>
         {data? <>
         <span style={{fontSize: "2.5rem", fontWeight:"bold"}}>{data.name}</span>
-        <p>Artists: {data.artists.map((artiste) => (
+        <p ><span style={{
+            fontWeight:"bold", fontSize:"1.5rem"
+        }}>Artists</span>: {data.artists.map((artiste) => (
             <span key={artiste.id}><a style={{textDecoration: "none", fontStyle:"italic"}} href={`/artists/${artiste.id}`}>{artiste.name} - </a></span>
         ))}</p>
         <div style={{display:'grid', gridTemplateColumns:"25% 50%" }}>

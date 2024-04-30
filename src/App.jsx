@@ -23,7 +23,6 @@ function App() {
       const hash = window.location.hash
       if (token.length < 1 && hash) {
           token = hash.substring(1).split("&").find(elem => elem.startsWith("access_token")).split("=")[1]
-          console.log(token)
           window.location.hash = ""
       }
       setToken(token)

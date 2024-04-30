@@ -3,17 +3,22 @@
 }
 html{
     font-size: 16px;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family: 'Kanit', sans-serif;
 }
 a{
     text-decoration: none;
     color: black;
 }
+button{
+    font-family: "Kanit", sans-serif;
+}
 a:hover{
     font-style: italic;
     font-size: larger;
 }
-
+body{
+    padding:0.5rem;
+}
 @media screen and (max-width: 768px) {
     html{
         font-size: 10px;

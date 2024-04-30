@@ -30,7 +30,7 @@ export function Playlist(){
         {data ? <>
         <h2>{data.name}</h2>
         <p><i>{data.description}</i></p>
-        <img src={data.images[0].url} alt={data.name} style={{borderRadius:"1.5rem", opacity: "0.8"}}/>
+        <img src={data.images[0].url} alt={data.name} style={{opacity: "0.8"}}/>
         <p>Items : <b>{data.tracks.items.length}</b> songs</p>
         <p>Popularity Score: <b>{popScore(data.tracks.items)}</b></p>
         {data.tracks.items.map((track) => (

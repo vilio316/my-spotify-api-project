@@ -26,7 +26,7 @@ const generateRandomString = (length) => {
       .replace(/\//g, '_');
   }
   
-  const hashed = await sha256(codeVerifier)
+  const hashed = async () => {await sha256(codeVerifier)}
   const codeChallenge = base64encode(hashed);
 
 /* scope,

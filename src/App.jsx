@@ -45,11 +45,9 @@ function App() {
   let dispatch = useDispatch();
   let token = useSelector(access_token)
 
-
-
   useEffect(() => {
       const hash = window.location.hash
-      if (token && token.length < 1 && hash) {
+      if (!token && hash) {
           token = hash.substring(1).split("&").find(elem => elem.startsWith("access_token")).split("=")[1]
           window.location.hash = ""
       }

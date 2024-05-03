@@ -5,9 +5,9 @@ export function SongFromSearch(props){
 
     return(
         <>
-        <div style={
+        <div id="search_comp" style={
             {
-                display: "grid", gridTemplateColumns:"10% 70% auto", alignContent:"center", alignItems:"center", 
+                display: "grid", alignContent:"center", alignItems:"center", 
                 padding:"0.5rem 0.25rem"
              }
                 }>

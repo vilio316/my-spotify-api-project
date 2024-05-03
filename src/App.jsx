@@ -110,7 +110,7 @@ function App() {
           </form>
           <p>
           </p>
-                  <button style={{outline: "none", borderRadius:"1rem", padding: '0.5rem', display:"block", backgroundColor:"green"}} onClick={logout}>Log 
+                  <button style={{outline: "none", borderRadius:"2.5rem", padding: '0.5rem', display:"block", backgroundColor:"green"}} onClick={logout}>Log 
                   Out</button></>}
         
       </div>

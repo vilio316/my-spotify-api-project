@@ -14,7 +14,7 @@ export function Album_Info(){
         {data ? <>
         <div id='song_card'>
             <div style={{justifyContent:"center", alignContent:"center"}}>
-            <img src = {data.images[1].url} style={{borderRadius:"1.25rem", width:"80%"}}/>
+            <img src = {data.images[1].url} style={{ width:"80%"}}/>
             </div>
             <div style={{alignSelf:"center"}}>
                 <h2>{data.name}</h2>

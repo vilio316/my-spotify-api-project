@@ -80,13 +80,13 @@ return(
     {data? <>
     <div>
         <h2>Your Top Songs</h2>
-        <div style={{display:"grid",gridTemplateColumns:"auto auto auto auto auto",
+        <div style={{display:"grid",gridTemplateColumns:"auto auto auto auto",
         padding: '0.5rem'
     }}>
         {data.items.map((item) => (
             <div key={item.id}>
                 <div>
-                <img src={item.album.images[0].url} alt={item.name} style={{width: '75%'}}/>
+                <img src={item.album.images[1].url} alt={item.name} style={{width: '75%'}}/>
                 </div>
                 <div>
                 <p style={{width:"90%", textAlign:"left", }}>

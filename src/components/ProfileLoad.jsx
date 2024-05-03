@@ -133,7 +133,7 @@ return(
     return(
         <>
         {showState? <GetUserTopArtists/> : <GetUserTopTracks/>}
-        <div>
+        <div style={{display:"grid", width: "100%", justifyItems:"center", gridTemplateColumns:"auto auto", justifyContent:"center"}}>
             <button onClick={()=> setState(true)}>Artists</button>
             <button onClick={()=> setState(false)}>Tracks</button>
             </div>

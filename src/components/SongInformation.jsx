@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom'
 import { useGetSongDetailsQuery } from '../loaders/apiSlice';
 import { makeTimeString } from "../components/PlaylistLoad"
 import { Header } from './Header';
-import logo from '../assets/sp_lg_2.jfif'
+import logo from '../assets/Spotify_Icon_RGB_Green.png'
 
 export default function SongInfo(){
     const id_value = useParams()
@@ -14,12 +14,15 @@ export default function SongInfo(){
         <Header/>
         {data? <>
         <span style={{fontSize: "2.5rem", fontWeight:"bold"}}>{data.name}</span>
-        <p ><span style={{
-            fontWeight:"bold", fontSize:"1.5rem"
-        }}>Artists</span>: {data.artists.map((artiste) => (
+        <p>
+            <span style={{
+            fontWeight:"bold", fontSize:"1.25rem"
+        }}>Artists</span>: <span style={{fontSize:"1.5rem"}}>{data.artists.map((artiste) => (
             <span key={artiste.id}><a style={{textDecoration: "none", fontStyle:"italic"}} href={`/artists/${artiste.id}`}>{artiste.name} - </a></span>
-        ))}</p>
-        <div style={{display:'grid', gridTemplateColumns:"25% 50%" }}>
+        ))}
+        </span>
+        </p>
+        <div id="song_card">
             <div style={{justifyContent:"center", justifyItems:"center", display:"grid", alignContent:"center"}}>
         <img src={data.album.images[1].url} alt={`${data.name}`} style={{display:"block", width:"75%"}}/>
         </div>

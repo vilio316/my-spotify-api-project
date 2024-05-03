@@ -32,7 +32,7 @@ export function SongInAlbum(props){
     let object = props.object
 
     return(
-         <div style={{display:"grid", gridTemplateColumns:"50% auto", alignContent:"center", alignItems:"center"}} key={object.id}>
+         <div className="album_song" style={{display:"grid", alignContent:"center", alignItems:"center"}} key={object.id}>
                     <div>
                     <a href={`/song/${object.id}`}>{object.name}</a>
                     <p>

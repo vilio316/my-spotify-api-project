@@ -12,7 +12,7 @@ export function Album_Info(){
         <>
         <Header/>
         {data ? <>
-        <div style={{display: 'grid', gridTemplateColumns: "25% 50%"}}>
+        <div id='song_card'>
             <div style={{justifyContent:"center", alignContent:"center"}}>
             <img src = {data.images[1].url} style={{borderRadius:"1.25rem", width:"80%"}}/>
             </div>
@@ -27,7 +27,7 @@ export function Album_Info(){
         </div>
         <div style={{padding: "0.5rem"}}>
             {data.tracks.items.map((track)=> (
-            <div style={{display: "grid", gridTemplateColumns:"5% auto"}} key={track.id}>
+            <div className="side_number" style={{display: "grid"}} key={track.id}>
             <p>{data.tracks.items.indexOf(track) + 1}.</p>
             <SongInAlbum object={track}/>
             </div>

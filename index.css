@@ -8,6 +8,17 @@ html{
 a{
     text-decoration: none;
     color: black;
+    font-style: italic;
+}
+#song_card{
+    display: grid;
+    grid-template-columns: 25% 50%;
+}
+.side_number{
+    grid-template-columns: 5% auto;
+}
+.album_song{
+    grid-template-columns: 50% auto;
 }
 button{
     font-family: "Kanit", sans-serif;
@@ -21,7 +32,15 @@ body{
 }
 @media screen and (max-width: 768px) {
     html{
-        font-size: 10px;
+        font-size: 12px;
     }
-    
+    #song_card{
+        grid-template-columns: auto;
+    }
+    .side_number{
+        grid-template-columns: 10% auto;
+    }
+    .album_song{
+        grid-template-columns: 75% auto;
+    }
 }

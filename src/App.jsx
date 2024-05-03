@@ -3,6 +3,9 @@ import { useDispatch, useSelector } from "react-redux"
 import { access_token, clearToken, storeToken } from "./store_slices/idSlice"
 import { Header } from "./components/Header";
 import { SearchProcessor} from "./components/SearchResults";
+import logoFile  from "../src/assets/Spotify_Icon_RGB_Black.png"
+import { ProfileShort } from "./components/ProfileLoad";
+import { useNavigate } from "react-router-dom";
 
 
 const generateRandomString = (length) => {
@@ -29,10 +32,7 @@ const generateRandomString = (length) => {
   const hashed = async () => {await sha256(codeVerifier)}
   const codeChallenge = base64encode(hashed);
 
-/* scope,
- ,
-  code_challenge: codeChallenge
-  2*/
+
 function App() {
   const CLIENT_ID = import.meta.env.VITE_CLIENT_ID ;
   const REDIRECT_URI = window.location.href;
@@ -44,6 +44,15 @@ function App() {
   const [artistName, setName] = useState("")
   let dispatch = useDispatch();
   let token = useSelector(access_token)
+
+  const navigate = useNavigate();
+
+  const goThere = () => {
+    navigate("/user-playlists")
+  }
+
+
+
 
   useEffect(() => {
       const hash = window.location.hash
@@ -69,21 +78,39 @@ function App() {
               {!token ?
               <>
                <div style={{width:'100%', height:'80vh', display:"grid"}}>
-                  <a style={{borderRadius:"1.5rem", color: 'black', backgroundColor:"green", fontSize:"1.5rem", placeSelf:"center", padding: '0.5rem'}} href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=${scopes}&code_challenge_method=${CCM}&code_challenge=${codeChallenge}`}>Login
+                <div style={{
+                  display: 'grid', 
+                  gridTemplateColumns:" auto auto", 
+                  placeSelf:"center",
+                  alignContent:"center",
+                  alignItems:"center",
+                  gap:'0.5rem',
+                  borderRadius:"2.5rem", color: 'black', backgroundColor:"green", fontSize:"1.5rem", padding: '0.5rem'
+                }}>
+                  <img src={logoFile} alt="Spotify Logo"  width="25rem"></img>
+                  <a href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=${scopes}&code_challenge_method=${CCM}&code_challenge=${codeChallenge}`}>
+                    Log In 
                       to Spotify</a>
                       </div>
+                      </div>
+                
                 </>
                   : <>
                   <Header/>
+                  <h2>Your User Profile</h2>
+                  <div onClick={goThere}>
+                    <ProfileShort/>
+                  </div>
                   <form>
                   <h2>Search for Anything Here: </h2>
-            <input type = "text" placeholder="Enter Search Term" style={{outline: "none", border:"2px solid green", borderRadius:"1.25rem", fontSize:"1.5rem", padding: '0.25rem 0.5rem'}} onChange={(e)=> {if(e.target.value.length > 0){setName(e.target.value)}}}/>
+            <input type = "text" placeholder="Enter Search Term" style={{
+              outline: "none", border:"2px solid green", borderRadius:"1.25rem", fontSize:"1.5rem", padding: '0.25rem 0.5rem'
+              }} onChange={(e)=> {if(e.target.value.length > 0){setName(e.target.value)}}}/>
             <SearchProcessor search={artistName}/>
           </form>
           <p>
-          <a href="/user-playlists">Your User Profile: </a>
           </p>
-                  <button style={{outline: "none", borderRadius:"1rem", padding: '0.5rem', display:"block"}} onClick={logout}>Log 
+                  <button style={{outline: "none", borderRadius:"1rem", padding: '0.5rem', display:"block", backgroundColor:"green"}} onClick={logout}>Log 
                   Out</button></>}
         
       </div>

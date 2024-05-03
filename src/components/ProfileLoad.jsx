@@ -4,22 +4,38 @@ import { access_token } from "../store_slices/idSlice";
 import { useEffect } from "react";
 import { useFindUserQuery, useFindUserDetailsQuery, useFindUserTopItemsQuery } from "../loaders/apiSlice";
 import { Header } from "./Header";
+import logo from '../assets/Spotify_Icon_RGB_Green.png'
 
 export default function ProfileUI(){
- const {data} = useFindUserQuery();
 
     return(
         <>
          <Header/>
         <h2><u>Your Profile Data</u></h2>
-        {data? <>
+        <ProfileShort/>
+        <GetUserTop/>
+        <ProfileShow/>
+        
+        </>
+    )
+}
+
+export function ProfileShort(){
+    const {data} = useFindUserQuery();
+
+    return(
+        <>
+            {data? <>
             <p>Display Name : {data.display_name}</p>
             <p>Spotify ID: {data.id}</p>
             <p>Follower Count : {data.followers.total}</p>
-            <a href={data.external_urls.spotify}>Spotify</a>
+            
+            <div style={{display: 'grid' , gridTemplateColumns:"10% auto", gap:"0.25rem"}}>
+                <img src={logo} alt="Spotify Logo" style={{width:"2.5rem"}} />
+            <a style={{fontSize:"1.25rem"}} href={data.external_urls.spotify}>
+                Spotify</a>
+            </div>
         </>: <p>Loading...</p>}
-        <ProfileShow/>
-        <GetUserTop/>
         </>
     )
 }
@@ -56,7 +72,7 @@ export function ProfileShow(){
     )
 }
 
- function GetUserTop(){
+export function GetUserTop(){
 let {data, error} = useFindUserTopItemsQuery('medium_term');
 
 return(
@@ -73,7 +89,10 @@ return(
                 <img src={item.album.images[0].url} alt={item.name} style={{width: '75%'}}/>
                 </div>
                 <div>
-                <p style={{width:"90%", textAlign:"left", }}>{item.name}</p>
+                <p style={{width:"90%", textAlign:"left", }}>
+                    <a href={`/song/${item.id}`}>{item.name}
+                        </a>
+                    </p>
                     </div>
                 </div>
         ))}

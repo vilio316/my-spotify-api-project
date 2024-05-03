@@ -14,6 +14,9 @@ a{
     display: grid;
     grid-template-columns: 25% 50%;
 }
+.artist_albums{
+    grid-template-columns: auto auto auto auto auto;
+}
 .side_number{
     grid-template-columns: 5% auto;
 }
@@ -48,5 +51,8 @@ body{
     }
     #search_comp{
         grid-template-columns: 20% 60% auto;
+    }
+    .artist_albums{
+        grid-template-columns: auto auto ;
     }
 } 

@@ -1,10 +1,10 @@
 import { useGetArtistAlbumsQuery, useGetArtistQuery } from "../loaders/apiSlice";
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { Header } from "./Header";
 export default function ArtistData(){
     let artist_id = useParams()
     const {data, error} = useGetArtistQuery(artist_id.artistID);
-
+    const go = useNavigate()
     const Artist_Albums = () =>{
         const {data, error} = useGetArtistAlbumsQuery(artist_id.artistID);
 
@@ -12,11 +12,11 @@ export default function ArtistData(){
             <>
             <h2>Top Albums</h2>
             {data ? <>
-            <div style={{display:'grid', gridTemplateColumns:'auto auto auto auto auto', width:"90%"}}>
+            <div className="artist_albums" style={{display:'grid', width:"90%"}}>
                 {data.items.map((item) => (
-                    <div key={item.id} style={{padding:"0.75rem", margin:'0.25rem', borderRadius:"1.25rem"}}>
-                        <img src={item.images[1].url} style={{borderRadius:"1.25rem", width:"75%", maxHeight:"15rem"}}/>
-                        <p style={{ overflow:"hidden"}}><a href={`/albums/${item.id}`} style={{width: '90%', height:"3.5rem", textOverflow:"ellipsis", display:"block",}}>{item.name}</a></p>
+                    <div key={item.id} style={{padding:"0.75rem", margin:'0.25rem'}}onClick={()=> go(`/albums/${item.id}`)}>
+                        <img src={item.images[1].url} style={{ width:"95%", maxHeight:"15rem"}}/>
+                        <p style={{ overflow:"hidden"}}><a href={`/albums/${item.id}`} style={{width: '90%', textOverflow:"ellipsis", display:"block",}}>{item.name}</a></p>
                         <p>
                             <span>{item.artists[0].name}</span>
                             <span style={{padding:"0 0.25rem", fontSize: "0.75rem"}}>{item.release_date}</span>

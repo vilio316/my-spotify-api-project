@@ -31,7 +31,9 @@ export function Album_Info(){
             <p>{data.tracks.items.indexOf(track) + 1}.</p>
             <SongInAlbum object={track}/>
             </div>
+           
                 ))}
+             <p>Copyright: {data.copyrights[0].text}</p>
         </div>
         </> : <>{error? <p>{error.data.error.status}: {error.data.error.message}</p> : <p>Loading...</p>}</>}
         </>

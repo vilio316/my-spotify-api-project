@@ -1,8 +1,8 @@
 import { useLoaderData } from "react-router-dom";
 import { useSelector } from 'react-redux'
 import { access_token } from "../store_slices/idSlice";
-import { useEffect } from "react";
-import { useFindUserQuery, useFindUserDetailsQuery, useFindUserTopItemsQuery } from "../loaders/apiSlice";
+import { useEffect, useState } from "react";
+import { useFindUserQuery, useFindUserDetailsQuery, useFindUserTopItemsQuery, useFindUserTopArtistsQuery } from "../loaders/apiSlice";
 import { Header } from "./Header";
 import logo from '../assets/Spotify_Icon_RGB_Green.png'
 
@@ -13,7 +13,7 @@ export default function ProfileUI(){
          <Header/>
         <h2><u>Your Profile Data</u></h2>
         <ProfileShort/>
-        <GetUserTop/>
+        <ShowTopItems/>
         <ProfileShow/>
         
         </>
@@ -72,7 +72,7 @@ export function ProfileShow(){
     )
 }
 
-export function GetUserTop(){
+export function GetUserTopTracks(){
 let {data, error} = useFindUserTopItemsQuery('medium_term');
 
 return(
@@ -101,4 +101,42 @@ return(
     </> : <>{error? <p>{error.data.error.message}</p> : <p>Loading...</p>}</>}
     </>
 )
+ }
+
+ export function GetUserTopArtists(){
+    const {data, error} = useFindUserTopArtistsQuery();
+
+    return(
+        <>
+        {data? <>
+        <h2><u>Your Top Artists</u></h2>
+        <div style={{
+            display: "grid", gridTemplateColumns:"auto auto auto auto"
+        }}>
+            {data.items.map((item) => (
+                <div key={item.id}>
+                    <div>
+                    <img src = {item.images[0].url} alt={item.name} style={{width: "85%"}}/>
+                    </div>
+                    <p><a href={`/artists/${item.id}`}>{item.name}</a></p>
+                </div>
+            ))}
+        </div>
+        </> : <p>...</p>}
+        </>
+    )
+ }
+
+ function ShowTopItems(){
+    let [showState, setState] = useState('false')
+
+    return(
+        <>
+        {showState? <GetUserTopArtists/> : <GetUserTopTracks/>}
+        <div>
+            <button onClick={()=> setState(true)}>Artists</button>
+            <button onClick={()=> setState(false)}>Tracks</button>
+            </div>
+        </>
+    )
  }

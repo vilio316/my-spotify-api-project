@@ -17,6 +17,10 @@ export const spotifyApi = createApi({
         findUser: builder.query({
             query: (id) => `/me`,
         }),
+        findUserTopArtists: builder.query({
+            query: () => `/me/top/artists?time_range=medium_term&limit=20`
+        })
+        ,
         findUserTopItems: builder.query({
             query: (range) => `/me/top/tracks?time_range=${range}&limit=50`
         }),
@@ -55,4 +59,5 @@ export const {
     useSearchArtistQuery,
     useFetchAlbumQuery,
     useFindUserTopItemsQuery,
+    useFindUserTopArtistsQuery,
  } = spotifyApi

@@ -20,6 +20,12 @@ a{
 .side_number{
     grid-template-columns: 5% auto;
 }
+#song_title{
+    font-size: 1.5rem;
+}
+#artistName{
+    font-size: 1rem;
+}
 .album_song{
     grid-template-columns: 50% auto;
 }
@@ -36,6 +42,14 @@ a:hover{
 body{
     padding:0.5rem;
 }
+#five_cols{
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    gap: 0.5rem;
+    padding: 0.5rem;
+}
+
+
 @media screen and (max-width: 768px) {
     html{
         font-size: 12px;
@@ -54,5 +68,13 @@ body{
     }
     .artist_albums{
         grid-template-columns: auto auto ;
+    }
+    #song_title{
+        font-size: 1rem;
+    }
+    #artistName{font-size: 0.75rem}
+    #five_cols{
+        grid-template-columns: auto auto auto;
+        gap: 1rem;
     }
 } 

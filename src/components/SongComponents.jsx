@@ -17,8 +17,8 @@ export function SongFromSearch(props){
         <div key={object.id}  style={
             {padding: '0.5rem'}
         }>
-                <p style={{fontSize:"1.5rem"}}><a href={`/song/${object.id}`}>{object.name} </a></p>
-                <p><a href={`/artists/${object.artists[0].id}`}>{object.artists[0].name}</a></p>
+                <p id="song_title"><a href={`/song/${object.id}`}>{object.name} </a></p>
+                <p id="artistName"><a href={`/artists/${object.artists[0].id}`}>{object.artists[0].name}</a></p>
         </div>
         <p>
             {makeTimeString(object.duration_ms)}

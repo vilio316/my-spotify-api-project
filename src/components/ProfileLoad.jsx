@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { useSelector } from 'react-redux'
 import { access_token } from "../store_slices/idSlice";
 import { useEffect, useState } from "react";
@@ -30,8 +30,10 @@ export function ProfileShort(){
             <p>Spotify ID: {data.id}</p>
             <p>Follower Count : {data.followers.total}</p>
             
-            <div style={{display: 'grid' , gridTemplateColumns:"10% auto", gap:"0.25rem"}}>
-                <img src={logo} alt="Spotify Logo" style={{width:"2.5rem"}} />
+            <div style={{display: 'grid' , gridTemplateColumns:"15% 25%", gap:"0.25rem", alignContent: 'center', alignItems:"center", width: "40%"}}>
+                <div style={{display: "grid", justifyContent:"center", justifyItems:"center"}}>
+                <img src={logo} alt="Spotify Logo" style={{width:"2rem"}} />
+                </div>
             <a style={{fontSize:"1.25rem"}} href={data.external_urls.spotify}>
                 Spotify</a>
             </div>
@@ -74,24 +76,24 @@ export function ProfileShow(){
 
 export function GetUserTopTracks(){
 let {data, error} = useFindUserTopItemsQuery('medium_term');
+let navigate = useNavigate()
 
 return(
     <>
     {data? <>
     <div>
         <h2>Your Top Songs</h2>
-        <div style={{display:"grid",gridTemplateColumns:"auto auto auto auto",
-        padding: '0.5rem'
-    }}>
+        <div id="five_cols">
         {data.items.map((item) => (
-            <div key={item.id}>
+            <div key={item.id} onClick={()=> 
+                navigate(`/song/${item.id}`)
+            }>
                 <div>
-                <img src={item.album.images[1].url} alt={item.name} style={{width: '75%'}}/>
+                <img src={item.album.images[1].url} alt={item.name} style={{maxHeight:"15rem"}}/>
                 </div>
                 <div>
                 <p style={{width:"90%", textAlign:"left", }}>
-                    <a href={`/song/${item.id}`}>{item.name}
-                        </a>
+                    {item.name}
                     </p>
                     </div>
                 </div>
@@ -110,15 +112,14 @@ return(
         <>
         {data? <>
         <h2><u>Your Top Artists</u></h2>
-        <div style={{
-            display: "grid", gridTemplateColumns:"auto auto auto auto"
-        }}>
+        <div id='five_cols'>
             {data.items.map((item) => (
                 <div key={item.id}>
-                    <div>
-                    <img src = {item.images[0].url} alt={item.name} style={{width: "85%"}}/>
-                    </div>
+                    <div style={{display: 'grid', justifyContent:"center"}}>
+                    <img src = {item.images[0].url} alt={item.name} style={{maxHeight:"15rem"}}/>
                     <p><a href={`/artists/${item.id}`}>{item.name}</a></p>
+                    </div>
+                   
                 </div>
             ))}
         </div>

@@ -87,7 +87,7 @@ function App() {
                   gap:'0.5rem',
                   borderRadius:"2.5rem", color: 'black', backgroundColor:"green", fontSize:"1.5rem", padding: '0.5rem'
                 }}>
-                  <img src={logoFile} alt="Spotify Logo"  width="25rem"></img>
+                  <img src={logoFile} alt="Spotify Logo"  width="25rem"/>
                   <a href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=${scopes}&code_challenge_method=${CCM}&code_challenge=${codeChallenge}`}>
                     Log In 
                       to Spotify</a>
@@ -110,7 +110,7 @@ function App() {
           </form>
           <p>
           </p>
-                  <button style={{outline: "none", borderRadius:"2.5rem", padding: '0.5rem', display:"block", backgroundColor:"green"}} onClick={logout}>Log 
+                  <button style={{outline: "none", border: "none", borderRadius:"2.5rem", padding: '0.5rem', display:"block", backgroundColor:"green"}} onClick={logout}>Log 
                   Out</button></>}
         
       </div>

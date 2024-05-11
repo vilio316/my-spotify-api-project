@@ -48,6 +48,9 @@ body{
     gap: 0.5rem;
     padding: 0.5rem;
 }
+.artistPhoto{
+    max-height: 15rem;
+}
 
 
 @media screen and (max-width: 768px) {
@@ -74,8 +77,11 @@ body{
     }
     #artistName{font-size: 0.75rem}
     #five_cols{
-        grid-template-columns: auto auto auto;
+        grid-template-columns: 30% 30% 30%;
         gap: 1rem;
-        width: 90%;
+        padding: 0.5rem;
+    }
+    .artistPhoto{
+        max-height: 7rem;
     }
 } 

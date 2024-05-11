@@ -82,14 +82,14 @@ return(
     <>
     {data? <>
     <div>
-        <h2>Your Top Songs</h2>
+        <h2 style={{textDecoration:"underline"}}>Your Top Songs</h2>
         <div id="five_cols">
         {data.items.map((item) => (
             <div key={item.id} onClick={()=> 
                 navigate(`/song/${item.id}`)
             }>
                 <div>
-                <img src={item.album.images[1].url} alt={item.name} style={{maxHeight:"15rem"}}/>
+                <img className="artistPhoto" src={item.album.images[1].url} alt={item.name}/>
                 </div>
                 <div>
                 <p style={{width:"90%", textAlign:"left", }}>
@@ -116,7 +116,7 @@ return(
             {data.items.map((item) => (
                 <div key={item.id}>
                     <div style={{display: 'grid', justifyContent:"center"}}>
-                    <img src = {item.images[0].url} alt={item.name} style={{maxHeight:"15rem"}}/>
+                    <img className="artistPhoto" src = {item.images[0].url} alt={item.name}/>
                     <p><a href={`/artists/${item.id}`}>{item.name}</a></p>
                     </div>
                    

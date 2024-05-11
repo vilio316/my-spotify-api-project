@@ -76,5 +76,6 @@ body{
     #five_cols{
         grid-template-columns: auto auto auto;
         gap: 1rem;
+        width: 90%;
     }
 } 

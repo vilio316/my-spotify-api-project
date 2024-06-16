@@ -15,10 +15,10 @@ export const spotifyApi = createApi({
             query: () => `/me/playlists`,
         }),
         findUser: builder.query({
-            query: (id) => `/me`,
+            query: () => `/me`,
         }),
         findUserTopArtists: builder.query({
-            query: () => `/me/top/artists?time_range=medium_term&limit=20`
+            query: () => `/me/top/artists?time_range=short_term&limit=20`
         })
         ,
         findUserTopItems: builder.query({

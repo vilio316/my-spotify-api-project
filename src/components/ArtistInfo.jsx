@@ -12,11 +12,11 @@ export default function ArtistData(){
             <>
             <h2>Top Albums</h2>
             {data ? <>
-            <div className="artist_albums" style={{display:'grid', width:"90%"}}>
+            <div className="artist_albums" style={{display:'grid', width:"100%"}}>
                 {data.items.map((item) => (
                     <div key={item.id} style={{padding:"0.75rem", margin:'0.25rem'}}onClick={()=> go(`/albums/${item.id}`)}>
                         <img src={item.images[1].url} style={{ width:"95%", maxHeight:"15rem"}}/>
-                        <p style={{ overflow:"hidden"}}><a href={`/albums/${item.id}`} style={{width: '90%', textOverflow:"ellipsis", display:"block",}}>{item.name}</a></p>
+                        <p style={{fontSize:"1.5rem"}}><a href={`/albums/${item.id}`} style={{width: '90%', textOverflow:"ellipsis", overflow:"hidden", display:"block",}}>{item.name}</a></p>
                         <p>
                             <span>{item.artists[0].name}</span>
                             <span style={{padding:"0 0.25rem", fontSize: "0.75rem"}}>{item.release_date}</span>
@@ -36,12 +36,12 @@ export default function ArtistData(){
       <Header/>
       {data ? 
         <>
-        <div style={{display: "grid", gridTemplateColumns:"25% 50%"}}>
-            <div style={{justifyContent:"right"}}>
+        <div className="artiste_header">
+            <div style={{justifyItems:"center", alignItems:"center", display:"grid" }}>
          <img src={data.images[2].url} style={{borderRadius: '50%', padding:"0.5rem", width: '70%'}}></img>
          </div>
-         <div style={{alignContent:"center"}}>
 
+         <div style={{alignContent:"center"}}>
         <h2>{data.name}</h2>
         <p>Genres: {data.genres.map((genre)=> (
             <span key={genre} style={{textTransform: 'capitalize', padding: '0 0.125rem'}}>{genre}-</span>

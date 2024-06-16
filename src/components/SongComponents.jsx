@@ -34,14 +34,15 @@ export function SongInAlbum(props){
     return(
          <div className="album_song" style={{display:"grid", alignContent:"center", alignItems:"center"}} key={object.id}>
                     <div>
-                    <a href={`/song/${object.id}`}>{object.name}</a>
+                    <a  style={{fontSize: "1.25rem"
+                    }} href={`/song/${object.id}`}>{object.name}</a>
                     <p>
                     {object.artists.map((artiste) => (
             <span style={{fontSize:'0.75rem'}} key={artiste.id}><a style={{textDecoration: "none", fontStyle:"italic"}} href={`/artists/${artiste.id}`}>{artiste.name} - </a></span>
         ))}
         </p>
                     </div>
-                    <p>{makeTimeString(object.duration_ms)}</p>
+                    <p style={{textAlign:"end"}}>{makeTimeString(object.duration_ms)}</p>
     </div>
     )
 }

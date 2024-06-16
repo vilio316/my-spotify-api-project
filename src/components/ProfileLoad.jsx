@@ -75,7 +75,7 @@ export function ProfileShow(){
 }
 
 export function GetUserTopTracks(){
-let {data, error} = useFindUserTopItemsQuery('medium_term');
+let {data, error} = useFindUserTopItemsQuery('short_term');
 let navigate = useNavigate()
 
 return(
@@ -92,7 +92,7 @@ return(
                 <img className="artistPhoto" src={item.album.images[1].url} alt={item.name}/>
                 </div>
                 <div>
-                <p style={{width:"90%", textAlign:"left", }}>
+                <p style={{width:"10rem", textAlign:"left", overflow:'hidden', textOverflow:"ellipsis" }}>
                     {item.name}
                     </p>
                     </div>
@@ -107,6 +107,7 @@ return(
 
  export function GetUserTopArtists(){
     const {data, error} = useFindUserTopArtistsQuery();
+    let navegando = useNavigate()
 
     return(
         <>
@@ -114,10 +115,10 @@ return(
         <h2><u>Your Top Artists</u></h2>
         <div id='five_cols'>
             {data.items.map((item) => (
-                <div key={item.id}>
+                <div key={item.id} onClick={()=> navegando(`/artists/${item.id}`)}>
                     <div style={{display: 'grid', justifyContent:"center"}}>
                     <img className="artistPhoto" src = {item.images[0].url} alt={item.name}/>
-                    <p><a href={`/artists/${item.id}`}>{item.name}</a></p>
+                    <p style={{fontSize:"1.5rem"}}><a href={`/artists/${item.id}`}>{item.name}</a></p>
                     </div>
                    
                 </div>
@@ -134,7 +135,7 @@ return(
     return(
         <>
         {showState? <GetUserTopArtists/> : <GetUserTopTracks/>}
-        <div style={{display:"grid", width: "100%", justifyItems:"center", gridTemplateColumns:"auto auto", justifyContent:"center"}}>
+        <div className='buttonHaus' style={{display:"grid", width: "100%", justifyItems:"center", gridTemplateColumns:"auto auto", justifyContent:"center"}}>
             <button onClick={()=> setState(true)}>Artists</button>
             <button onClick={()=> setState(false)}>Tracks</button>
             </div>

@@ -105,11 +105,12 @@ body{
     }
     #artistName{font-size: 0.75rem}
     #five_cols{
-        grid-template-columns: auto auto auto;
-        gap: 1rem;
-        width: 95%;
+        display: grid;
+        grid-template-columns: auto auto;
+        width: 100%;
+        gap:0.5rem;
     }
     .artistPhoto{
-        max-height: 10rem;
+        max-height: 7.5rem;
     }
 } 

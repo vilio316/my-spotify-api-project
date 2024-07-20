@@ -74,7 +74,7 @@ body{
     max-height: 12.5rem;
 }
 .albumTitle{
-    text-align: center;
+    text-align: left;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;

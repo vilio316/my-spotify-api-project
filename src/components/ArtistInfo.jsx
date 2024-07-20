@@ -16,7 +16,7 @@ export default function ArtistData(){
                 {data.items.map((item) => (
                     <div key={item.id} style={{padding:"0.75rem", margin:'0.25rem'}}onClick={()=> go(`/albums/${item.id}`)}>
                         
-                        <div style={{display:"grid"}}>
+                        <div style={{display:"grid", justifyItems:"center"}}>
                         <img src={item.images[1].url} alt={item.name} className="artistPhoto"/>
                         </div>
                         

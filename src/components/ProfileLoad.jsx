@@ -75,7 +75,8 @@ export function ProfileShow(){
 }
 
 export function GetUserTopTracks(){
-let {data, error} = useFindUserTopItemsQuery('short_term');
+let [searchRange, editRange] = useState('short_term')
+let {data, error} = useFindUserTopItemsQuery(searchRange);
 let navigate = useNavigate()
 
 return(
@@ -83,6 +84,11 @@ return(
     {data? <>
     <div>
         <h2 style={{textDecoration:"underline"}}>Your Top Songs</h2>
+        <div className="buttonHaus" style={{gridTemplateColumns:"auto auto auto", margin: '1rem 0'}}>
+            <button onClick={()=> editRange('short_term')}>4 Weeks</button>
+            <button onClick={()=> editRange('medium_term')}>6 Months</button>
+            <button onClick={()=> editRange('long_term')}>&gt; 1 Year</button>
+        </div>
         <div id="five_cols">
         {data.items.map((item) => (
             <div key={item.id} onClick={()=> 

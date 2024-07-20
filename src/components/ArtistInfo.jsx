@@ -20,7 +20,7 @@ export default function ArtistData(){
                         <img src={item.images[1].url} alt={item.name} className="artistPhoto"/>
                         </div>
                         
-                        <p className="albumTitle" style={{fontSize:"1.25rem", width: '10rem'}}><a href={`/albums/${item.id}`}>
+                        <p className="albumTitle" style={{fontSize:"1.25rem", width: '10rem', textAlign:"left"}}><a href={`/albums/${item.id}`}>
                         {item.name}</a>
                         </p>
                         <p>

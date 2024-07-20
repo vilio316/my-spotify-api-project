@@ -98,7 +98,7 @@ return(
                 <img className="artistPhoto" src={item.album.images[1].url} alt={item.name}/>
                 </div>
                 <div>
-                <p className="albumTitle" style={{width: '12.5rem'}}>
+                <p className="albumTitle" style={{width: '12.5rem', textAlign:'center'}}>
                     {item.name}
                     </p>
                     </div>
@@ -125,7 +125,7 @@ return(
                     <div style={{display:"grid", placeItems:"center", margin:'0 0.75rem'}}>
                     <img className="artistPhoto" src = {item.images[0].url} alt={item.name}/>
                     </div>
-                    <p className="albumTitle" ><a href={`/artists/${item.id}`} style={{fontSize:'1.5rem'}}>{item.name}</a></p>
+                    <p className="albumTitle" style={{textAlign:'center'}}><a href={`/artists/${item.id}`} style={{fontSize:'1.5rem'}}>{item.name}</a></p>
                 </div>
             ))}
         </div>

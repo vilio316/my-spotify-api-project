@@ -59,7 +59,6 @@ button{
 }
 a:hover{
     font-style: italic;
-    font-size: larger;
 }
 body{
     padding:0.5rem;
@@ -67,10 +66,18 @@ body{
 #five_cols{
     display: grid;
     grid-template-columns: auto auto auto auto auto;
-    gap: 0.5rem;
+    gap: 1rem;
+    width: 95%;
+    justify-self: center;
 }
 .artistPhoto{
-    max-height: 15rem;
+    max-height: 12.5rem;
+}
+.albumTitle{
+    text-align: center;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 
@@ -98,11 +105,11 @@ body{
     }
     #artistName{font-size: 0.75rem}
     #five_cols{
-        grid-template-columns: 30% 30% 30%;
+        grid-template-columns: auto auto auto;
         gap: 1rem;
-        padding: 0.5rem;
+        width: 95%;
     }
     .artistPhoto{
-        max-height: 7rem;
+        max-height: 7.5rem;
     }
 } 

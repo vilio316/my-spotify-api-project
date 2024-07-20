@@ -40,7 +40,7 @@ export const spotifyApi = createApi({
             query: (id) => `/artists/${id}`
         }),
         getArtistAlbums : builder.query({
-            query: (id) => `/artists/${id}/albums?limit=10`
+            query: (id) => `/artists/${id}/albums?limit=20`
         }), 
         fetchAlbum : builder.query({
             query: (id) => `/albums/${id}`

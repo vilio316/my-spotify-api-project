@@ -15,8 +15,14 @@ export default function ArtistData(){
             <div className="artist_albums" style={{display:'grid', width:"100%"}}>
                 {data.items.map((item) => (
                     <div key={item.id} style={{padding:"0.75rem", margin:'0.25rem'}}onClick={()=> go(`/albums/${item.id}`)}>
-                        <img src={item.images[1].url} style={{ width:"95%", maxHeight:"15rem"}}/>
-                        <p style={{fontSize:"1.5rem"}}><a href={`/albums/${item.id}`} style={{width: '90%', textOverflow:"ellipsis", overflow:"hidden", display:"block",}}>{item.name}</a></p>
+                        
+                        <div style={{display:"grid"}}>
+                        <img src={item.images[1].url} alt={item.name} className="artistPhoto"/>
+                        </div>
+                        
+                        <p className="albumTitle" style={{fontSize:"1.25rem", width: '10rem'}}><a href={`/albums/${item.id}`}>
+                        {item.name}</a>
+                        </p>
                         <p>
                             <span>{item.artists[0].name}</span>
                             <span style={{padding:"0 0.25rem", fontSize: "0.75rem"}}>{item.release_date}</span>

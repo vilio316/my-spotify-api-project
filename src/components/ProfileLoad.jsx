@@ -88,11 +88,11 @@ return(
             <div key={item.id} onClick={()=> 
                 navigate(`/song/${item.id}`)
             }>
-                <div>
+                <div style={{display:"grid", placeItems:"center"}}>
                 <img className="artistPhoto" src={item.album.images[1].url} alt={item.name}/>
                 </div>
                 <div>
-                <p style={{width:"10rem", textAlign:"left", overflow:'hidden', textOverflow:"ellipsis" }}>
+                <p className="albumTitle" style={{width: '12.5rem'}}>
                     {item.name}
                     </p>
                     </div>
@@ -116,11 +116,10 @@ return(
         <div id='five_cols'>
             {data.items.map((item) => (
                 <div key={item.id} onClick={()=> navegando(`/artists/${item.id}`)}>
-                    <div style={{display: 'grid', justifyContent:"center"}}>
+                    <div style={{display:"grid", placeItems:"center", margin:'0 0.75rem'}}>
                     <img className="artistPhoto" src = {item.images[0].url} alt={item.name}/>
-                    <p style={{fontSize:"1.5rem"}}><a href={`/artists/${item.id}`}>{item.name}</a></p>
                     </div>
-                   
+                    <p className="albumTitle" ><a href={`/artists/${item.id}`} style={{fontSize:'1.5rem'}}>{item.name}</a></p>
                 </div>
             ))}
         </div>

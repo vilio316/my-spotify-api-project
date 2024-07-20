@@ -24,7 +24,7 @@ export default function SongInfo(){
         </p>
         <div id="song_card">
             <div style={{justifyContent:"center", justifyItems:"center", display:"grid", alignContent:"center"}}>
-        <img src={data.album.images[1].url} alt={`${data.name}`} style={{display:"block", width:"75%"}}/>
+        <img src={data.album.images[1].url} alt={`${data.name}`} style={{display:"block", width:"85%"}}/>
         </div>
         <div style={{alignItems:"center", alignContent:"center", fontSize: "1.25rem"}}>
         <p>Album : <a href={`/albums/${data.album.id}`}>{data.album.name}</a></p>

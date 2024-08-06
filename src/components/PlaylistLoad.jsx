@@ -31,7 +31,7 @@ export function Playlist(){
         <h2>{data.name}</h2>
         <p><i>{data.description}</i></p>
         <div id='song_card' style={{alignItems:"center", marginBottom:"1rem"}}>
-        <img src={data.images[1].url} alt={data.name} style={{opacity: "0.8"}}/>
+        <img src={data.images[0].url} alt={data.name} style={{opacity: "0.8"}}/>
         <div style={{fontSize:"1.5rem"}}>  
             <p>Items : <b>{data.tracks.items.length}</b> songs</p>
         <p>Popularity Score: <b>{popScore(data.tracks.items)}</b></p>

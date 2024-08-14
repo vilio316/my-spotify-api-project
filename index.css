@@ -5,6 +5,9 @@ html{
     font-size: 16px;
     font-family: 'Kanit', sans-serif;
 }
+.grid{
+    display: grid
+}
 #root{
     display: grid;
 }
@@ -29,15 +32,18 @@ a{
 .buttonHaus > button{
     color: white;
     background-color: #1DB954;
-    padding: 0.25rem;
+    padding: 0.5rem;
     font-size: 1.5rem;
     border-radius: 1.5rem;
-    margin: 0 0.5rem;
     width: 10rem;
+    margin: 0 0.5rem;
     border: none;
     outline: none;
 }
 
+h2{
+    margin: 0.5rem 0
+}
 
 .side_number{
     grid-template-columns: 5% auto;
@@ -67,7 +73,7 @@ body{
     display: grid;
     grid-template-columns: auto auto auto auto auto;
     gap: 1rem;
-    width: 95%;
+    width: 100%;
     justify-self: center;
 }
 .artistPhoto{
@@ -104,12 +110,20 @@ body{
     }
     #artistName{font-size: 0.75rem}
     #five_cols{
-        display: grid;
-        grid-template-columns: auto auto;
-        width: 100%;
-        gap:0.5rem;
+        grid-template-columns: auto auto auto;
+        gap: 0.5rem;
     }
     .artistPhoto{
         max-height: 7.5rem;
+    }
+    .albumTitle{
+        max-width: 7.5rem;
+    }
+    .buttonHaus > button{
+        border-radius: 0.75rem;
+        width: 7.5rem;
+        margin: 0.5rem 0.25rem;
+        border: none;
+        outline: none;
     }
 } 

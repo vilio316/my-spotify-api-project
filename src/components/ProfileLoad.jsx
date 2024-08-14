@@ -82,9 +82,8 @@ let navigate = useNavigate()
 return(
     <>
     {data? <>
-    <div>
         <h2 style={{textDecoration:"underline"}}>Your Top Songs</h2>
-        <div className="buttonHaus" style={{gridTemplateColumns:"auto auto auto", margin: '1rem 0'}}>
+        <div className="buttonHaus" style={{gridTemplateColumns:"auto auto auto", margin: '0.5rem 0'}}>
             <button onClick={()=> editRange('short_term')}>4 Weeks</button>
             <button onClick={()=> editRange('medium_term')}>6 Months</button>
             <button onClick={()=> editRange('long_term')}>&gt; 1 Year</button>
@@ -95,17 +94,18 @@ return(
                 navigate(`/song/${item.id}`)
             }>
                 <div style={{display:"grid", placeItems:"center"}}>
-                <img className="artistPhoto" src={item.album.images[1].url} alt={item.name}/>
+                <img className="artistPhoto" src={item.album.images[0].url} alt={item.name}/>
                 </div>
-                <div>
-                <p className="albumTitle" style={{width: '12.5rem', textAlign:'center'}}>
+                <div className="grid" style={{
+                    justifyContent:"center"
+                }}>
+                <p className="albumTitle" style={{textAlign:'center'}}>
                     {item.name}
                     </p>
-                    </div>
                 </div>
+            </div>
         ))}
         </div>
-    </div>
     </> : <>{error? <p>{error.data.error.message}</p> : <p>Loading...</p>}</>}
     </>
 )

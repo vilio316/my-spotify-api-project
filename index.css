@@ -93,6 +93,12 @@ body{
     #song_card, .artiste_header{
         grid-template-columns: auto;
     }
+    .song_container{
+        justify-content: center;
+    }
+    .song_container img{
+        width: 90%;
+    }
     .side_number{
         grid-template-columns: 10% auto;
     }
@@ -111,7 +117,7 @@ body{
     #artistName{font-size: 0.75rem}
     #five_cols{
         grid-template-columns: auto auto auto;
-        gap: 0.5rem;
+        gap: 0.25rem;
     }
     .artistPhoto{
         max-height: 7.5rem;

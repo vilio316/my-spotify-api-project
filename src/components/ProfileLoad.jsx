@@ -61,7 +61,7 @@ export function ProfileShow(){
                     }}/>
                 </div>
                 <div>
-                                    <p style={{fontSize: "1.5rem"}}> 
+                    <p style={{fontSize: "1.5rem", width:"85%", whiteSpace:"wrap"}}> 
                     <a href={`/playlists/${playlist.id}`}>{playlist.name}</a></p>
                 </div> 
                 </div>   

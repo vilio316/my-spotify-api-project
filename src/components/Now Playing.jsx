@@ -39,7 +39,7 @@ function makeTimetoSeconds(time_val){
             </div>
             </> : <>
             {error ? <>
-            <p>{error.message}</p>
+            <p>{error}</p>
             </> : <><p>Whoops!</p></>}
             </>
         }
@@ -54,7 +54,7 @@ function PlayState(){
         <>
         {data ? <>
         <p>Listening on {data.device.name}</p>
-        </> : <><p>{error.message}</p></>}
+        </> : <><p>{error}</p></>}
         </>
     )
 }

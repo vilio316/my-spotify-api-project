@@ -37,7 +37,7 @@ function App() {
   const CLIENT_ID = import.meta.env.VITE_CLIENT_ID ;
   const REDIRECT_URI = window.location.href;
   const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize"
-  const scopes = 'user-top-read user-read-private user-read-email'
+  const scopes = 'user-top-read user-read-private user-read-email user-read-currently-playing user-read-playback-state'
   const CCM= 'S256'
   const RESPONSE_TYPE = "token"
   const [tokenVal, setToken] = useState("")

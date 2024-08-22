@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useFindUserQuery, useFindUserDetailsQuery, useFindUserTopItemsQuery, useFindUserTopArtistsQuery } from "../loaders/apiSlice";
 import { Header } from "./Header";
 import logo from '../assets/Spotify_Icon_RGB_Green.png'
+import { NowPlaying } from "./Now Playing";
 
 export default function ProfileUI(){
 
@@ -12,6 +13,7 @@ export default function ProfileUI(){
         <>
          <Header/>
         <h2><u>Your Profile Data</u></h2>
+        <NowPlaying/>
         <ProfileShort/>
         <ShowTopItems/>
         <ProfileShow/>
@@ -26,6 +28,7 @@ export function ProfileShort(){
     return(
         <>
             {data? <>
+            <h2>Profile Overview</h2>
             <p>Display Name : {data.display_name}</p>
             <p>Spotify ID: {data.id}</p>
             <p>Follower Count : {data.followers.total}</p>

@@ -84,7 +84,29 @@ body{
     overflow: hidden;
     white-space: nowrap;
 }
+#play_monitor{
+    appearance: none;
+    background-color: transparent;
 
+}
+#play_monitor::-webkit-slider-runnable-track{
+    background-color: #1DB954;
+    opacity:0.75;
+    height: 0.5rem;
+    border-radius: 0.5rem;
+    position: relative;
+}
+#play_monitor::-webkit-slider-thumb{
+    appearance: none;
+    position: relative;
+    background-color: gray;
+    border: white;
+    border-radius: 50%;
+    height: 1.5rem;
+    width: 1.5rem;
+    top: 50%;
+    translate: 0 -50%
+}
 
 @media screen and (max-width: 768px) {
     html{

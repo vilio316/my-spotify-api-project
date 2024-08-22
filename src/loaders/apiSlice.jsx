@@ -44,6 +44,12 @@ export const spotifyApi = createApi({
         }), 
         fetchAlbum : builder.query({
             query: (id) => `/albums/${id}`
+        }),
+        getNowPlaying: builder.query({
+            query: (name) => `/me/player/currently-playing`
+        }),
+        fetchPlaybackState : builder.query({
+            query:(name) => `/me/player`
         })
     })
 })
@@ -60,4 +66,6 @@ export const {
     useFetchAlbumQuery,
     useFindUserTopItemsQuery,
     useFindUserTopArtistsQuery,
+    useGetNowPlayingQuery,
+    useFetchPlaybackStateQuery,
  } = spotifyApi

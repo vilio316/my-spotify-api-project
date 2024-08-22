@@ -17,26 +17,27 @@ function makeTimetoSeconds(time_val){
         <>
         {
             data ? <>
-            <h2 style={{
+            <h3 style={{
                 textDecoration:"underline"
-            }}>Now Playing: </h2>
-            <div className="grid" style={{gridTemplateColumns:"80% auto", alignItems:"center"}}>
+            }}>Now Playing: </h3>
+            <div className="grid" style={{gridTemplateColumns:"90% auto", alignItems:"center"}}>
             <SongFromSearch object={data.item}/>
             <div>
-                <button style={{width: '3.5rem' ,height:"3.5rem", outline:"none", border:"none", borderRadius:'50%'}}>
-                    {!data.is_playing ? <FaPlay/> : <FaPause/> }
+                <button style={{width: '5rem' ,height:"5rem", outline:"none", border:"none", borderRadius:'50%'}}>
+                    {!data.is_playing ? <FaPlay size={'2.5rem'}/> : <FaPause size={'2.5rem'}/> }
                 </button>
             </div>
             </div>
             <PlayState/>
-            <p>{data.is_playing? <span>Playing... {makeTimeString(data.progress_ms)} / {makeTimeString(data.item.duration_ms)}</span> : <span>Paused</span>}</p>
-            <div>
+            <span>{data.is_playing? <span>Playing... {makeTimeString(data.progress_ms)} / {makeTimeString(data.item.duration_ms)}</span> : <span>Paused</span>}</span>
             <input type="range" id="play_monitor" max={makeTimetoSeconds(data.item.duration_ms)} min={0} value={makeTimetoSeconds(data.progress_ms)} readOnly
             style={{
                 color: 'green',
-                width: '90%'
+                width: '80%',
+                display: 'grid',
+                justifySelf:'center', 
+                margin: '0.5rem 0'
             }}/>
-            </div>
             </> : <>
             {error ? <>
             <p>{error}</p>

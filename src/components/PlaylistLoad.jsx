@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { useGetPlaylistQuery, useSearchArtistQuery } from "../loaders/apiSlice";
 import { Header } from "./Header";
 import { SongFromSearch } from "./SongComponents";
+import { useEffect, useRef, useState } from "react";
 
 export const popScore = (array) => {
     let popTotal = 0
@@ -23,6 +24,7 @@ export const makeTimeString = (ms_value) =>{
 export function Playlist(){
     const play_id = useParams()
     const {data} = useGetPlaylistQuery(play_id.playID)
+
 
     return(
         <>

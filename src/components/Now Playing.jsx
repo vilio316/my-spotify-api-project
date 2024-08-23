@@ -17,7 +17,8 @@ function makeTimetoSeconds(time_val){
         {
             data ? <>
             <h3 style={{
-                textDecoration:"underline"
+                textDecoration:"underline",
+                margin: "0.5rem 0"
             }}>Now Playing: </h3>
             <div id="np_wrapper">
             <div className="grid" id='player'>
@@ -29,10 +30,12 @@ function makeTimetoSeconds(time_val){
             </div>
             </div>
             
-            <div id="playback_monitor_container">
+            <div id="playback_monitor_container" className="grid">
             <div style={{
                 display:"grid",
-                gridTemplateColumns:"auto auto"
+                gridTemplateColumns:"auto auto",
+                width:"80%",
+                justifySelf:"center"
             }}>
             <span>{makeTimeString(data.progress_ms)} / {makeTimeString(data.item.duration_ms)} </span>
             <PlayState/>

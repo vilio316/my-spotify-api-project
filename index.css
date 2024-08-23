@@ -123,6 +123,9 @@ body{
     html{
         font-size: 12px;
     }
+    .listening_device{
+        margin-right: 1.5rem;
+    }
     #song_card, .artiste_header{
         grid-template-columns: auto;
     }

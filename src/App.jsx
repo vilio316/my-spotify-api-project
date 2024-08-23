@@ -6,7 +6,8 @@ import { SearchProcessor} from "./components/SearchResults";
 import logoFile  from "../src/assets/Spotify_Icon_RGB_Black.png"
 import { ProfileShort } from "./components/ProfileLoad";
 import { useNavigate } from "react-router-dom";
-
+import { useFindUserQuery, useGetArtistAlbumsQuery } from "./loaders/apiSlice";
+import { Error } from "./components/Error";
 
 const generateRandomString = (length) => {
     const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -44,6 +45,7 @@ function App() {
   const [artistName, setName] = useState("")
   let dispatch = useDispatch();
   let token = useSelector(access_token)
+  let {data} = useFindUserQuery()
 
   const navigate = useNavigate();
 
@@ -95,8 +97,10 @@ function App() {
                       </div>
                 
                 </>
-                  : <>
-                  <Header/>
+                  : 
+                  <>
+
+                  { data? <><Header/>
                   <h2>Your User Profile</h2>
                   <div onClick={goThere}>
                     <ProfileShort/>
@@ -111,9 +115,16 @@ function App() {
           <p>
           </p>
                   <button style={{outline: "none", border: "none", borderRadius:"2.5rem", padding: '0.5rem', display:"block", backgroundColor:"green"}} onClick={logout}>Log 
-                  Out</button></>}
-        
-      </div>
+                  Out</button>
+                  </> : 
+                  <>
+                  <Error/>
+                  <button style={{outline: "none", border: "none", borderRadius:"2.5rem", padding: '0.5rem', display:"block", backgroundColor:"green"}} onClick={logout}>Log 
+                  Out</button>
+                  </>}
+                  </>
+            }
+  </div>
 
   );
 }

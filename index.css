@@ -158,6 +158,11 @@ body{
     .albumTitle{
         max-width: 7.5rem;
     }
+    #np_wrapper{
+        display: grid;
+        justify-items: center;
+        justify-content: center;
+    }
     .buttonHaus > button{
         border-radius: 0.75rem;
         width: 7.5rem;
@@ -167,8 +172,10 @@ body{
     }
     #player{
         grid-template-columns: 75% 15%;
+        justify-items: center;
+        justify-content: center;
     }
     #playback_monitor_container{
-        width: 90%;
+        width: 100%;
     }
 } 

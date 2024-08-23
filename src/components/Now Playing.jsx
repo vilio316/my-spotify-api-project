@@ -19,6 +19,7 @@ function makeTimetoSeconds(time_val){
             <h3 style={{
                 textDecoration:"underline"
             }}>Now Playing: </h3>
+            <div id="np_wrapper">
             <div className="grid" id='player'>
             <SongFromSearch object={data.item}/>
             <div>
@@ -45,6 +46,7 @@ function makeTimetoSeconds(time_val){
                 justifySelf:'center', 
                 margin: '0.5rem 0'
             }}/>
+            </div>
             </div>
             </div>
             </> : <>

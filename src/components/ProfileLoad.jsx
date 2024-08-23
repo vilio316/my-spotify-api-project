@@ -28,7 +28,7 @@ export function ProfileShort(){
     return(
         <>
             {data? <>
-            <h2>Profile Overview</h2>
+            <h3>Profile Overview</h3>
             <p>Display Name : {data.display_name}</p>
             <p>Spotify ID: {data.id}</p>
             <p>Follower Count : {data.followers.total}</p>
@@ -51,16 +51,21 @@ export function ProfileShow(){
     return(
         <>
        
-        <h3>Your Playlists: </h3>
+        <h3 style={{
+            margin:'0.75rem 0 0.25rem 0'
+        }}>Your Playlists: </h3>
         <div>{data?
         <>
             {data.display_name}
             <div>
                 {data.items.map((playlist) => (
-                <div key={playlist.id} style={{display:"grid", gridTemplateColumns:"20% auto", alignContent:"center", alignItems:"center", margin: '0.5rem 0'}}>
-                <div>
+                <div key={playlist.id} style={{display:"grid", gridTemplateColumns:"20% auto", alignContent:"center", alignItems:"center", margin: '0.25rem 0', gap:"0.25rem 0.5rem"}}>
+                <div className="grid" style={{
+                    justifyContent:"center", 
+                    justifyItems:'center'
+                }}>
                     <img src={playlist.images[0].url} style={{
-                        width: "75%",
+                        width: "85%",
                     }}/>
                 </div>
                 <div>

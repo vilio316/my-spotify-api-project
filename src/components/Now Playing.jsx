@@ -9,7 +9,6 @@ export function NowPlaying(){
         skipPollingIfUnfocused: false,
     })
 function makeTimetoSeconds(time_val){
-    let ms = time_val
     let seconds = time_val/1000
     return seconds
 }
@@ -20,7 +19,7 @@ function makeTimetoSeconds(time_val){
             <h3 style={{
                 textDecoration:"underline"
             }}>Now Playing: </h3>
-            <div className="grid" style={{gridTemplateColumns:"90% auto", alignItems:"center"}}>
+            <div className="grid" id='player'>
             <SongFromSearch object={data.item}/>
             <div>
                 <button style={{width: '5rem' ,height:"5rem", outline:"none", border:"none", borderRadius:'50%'}}>
@@ -28,8 +27,16 @@ function makeTimetoSeconds(time_val){
                 </button>
             </div>
             </div>
+            
+            <div id="playback_monitor_container">
+            <div style={{
+                display:"grid",
+                gridTemplateColumns:"auto auto"
+            }}>
+            <span>{makeTimeString(data.progress_ms)} / {makeTimeString(data.item.duration_ms)} </span>
             <PlayState/>
-            <span>{data.is_playing? <span>Playing... {makeTimeString(data.progress_ms)} / {makeTimeString(data.item.duration_ms)}</span> : <span>Paused</span>}</span>
+            </div>
+            <div className="grid">
             <input type="range" id="play_monitor" max={makeTimetoSeconds(data.item.duration_ms)} min={0} value={makeTimetoSeconds(data.progress_ms)} readOnly
             style={{
                 color: 'green',
@@ -38,10 +45,12 @@ function makeTimetoSeconds(time_val){
                 justifySelf:'center', 
                 margin: '0.5rem 0'
             }}/>
+            </div>
+            </div>
             </> : <>
             {error ? <>
             <p>{error}</p>
-            </> : <><p>Whoops!</p></>}
+            </> : <><p>Error retrieving "Now Playing" state. </p></>}
             </>
         }
         </>
@@ -54,7 +63,10 @@ function PlayState(){
     return(
         <>
         {data ? <>
-        <p>Listening on {data.device.name}</p>
+        <span style={{
+            display: 'grid',
+            textAlign: 'right',
+        }}>Listening on <b>{data.device.name}</b></span>
         </> : <><p>{error}</p></>}
         </>
     )

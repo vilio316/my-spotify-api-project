@@ -45,7 +45,7 @@ function App() {
   const [artistName, setName] = useState("")
   let dispatch = useDispatch();
   let token = useSelector(access_token)
-  let {data} = useFindUserQuery()
+  let {data, error, isFetching} = useFindUserQuery()
 
   const navigate = useNavigate();
 
@@ -99,8 +99,8 @@ function App() {
                 </>
                   : 
                   <>
-
-                  { data? <><Header/>
+                  { data ? <>
+                  <Header/>
                   <h2>Your User Profile</h2>
                   <div onClick={goThere}>
                     <ProfileShort/>
@@ -116,14 +116,23 @@ function App() {
           </p>
                   <button style={{outline: "none", border: "none", borderRadius:"2.5rem", padding: '0.5rem', display:"block", backgroundColor:"green"}} onClick={logout}>Log 
                   Out</button>
-                  </> : 
+                  </> :
+                   <>
+                  { error ? 
                   <>
                   <Error/>
                   <button style={{outline: "none", border: "none", borderRadius:"2.5rem", padding: '0.5rem', display:"block", backgroundColor:"green"}} onClick={logout}>Log 
                   Out</button>
+                  </> : 
+                  <>
+                  <p>
+                    Loading...
+                  </p>
                   </>}
                   </>
-            }
+}</>
+                  }
+            
   </div>
 
   );

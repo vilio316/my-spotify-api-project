@@ -34,7 +34,7 @@ function makeTimetoSeconds(time_val){
             <div style={{
                 display:"grid",
                 gridTemplateColumns:"auto auto",
-                width:"80%",
+                width:"95%",
                 justifySelf:"center"
             }}>
             <span>{makeTimeString(data.progress_ms)} / {makeTimeString(data.item.duration_ms)} </span>
@@ -44,7 +44,7 @@ function makeTimetoSeconds(time_val){
             <input type="range" id="play_monitor" max={makeTimetoSeconds(data.item.duration_ms)} min={0} value={makeTimetoSeconds(data.progress_ms)} readOnly
             style={{
                 color: 'green',
-                width: '80%',
+                width: '95%',
                 display: 'grid',
                 justifySelf:'center', 
                 margin: '0.5rem 0'

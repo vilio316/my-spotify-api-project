@@ -10,7 +10,6 @@ html{
 }
 #root{
     display: grid;
-    padding: 0 0.5rem;
 }
 .artiste_header{
     display: grid;
@@ -43,7 +42,7 @@ a{
 }
 
 h2{
-    margin: 0.5rem 0
+    margin: 1rem 0;
 }
 
 .side_number{
@@ -66,9 +65,6 @@ button{
 }
 a:hover{
     font-style: italic;
-}
-body{
-    padding:0.5rem;
 }
 #five_cols{
     display: grid;
@@ -114,7 +110,9 @@ body{
     grid-template-columns: 60% 5%;
     align-items: center;
 }
-
+.playlist_img{
+    width: 75%;
+}
 #playback_monitor_container{
     width: 65%
 }
@@ -174,11 +172,14 @@ body{
         outline: none;
     }
     #player{
-        grid-template-columns: 75% 15%;
+        grid-template-columns: 80% 15%;
         justify-items: center;
         justify-content: center;
     }
     #playback_monitor_container{
         width: 100%;
+    }
+    .playlist_img{
+        width: "90%"
     }
 } 

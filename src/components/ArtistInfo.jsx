@@ -17,7 +17,9 @@ export default function ArtistData(){
                     <div key={item.id} style={{padding:"0.75rem", margin:'0.25rem'}}onClick={()=> go(`/albums/${item.id}`)}>
                         
                         <div style={{display:"grid", justifyItems:"center"}}>
-                        <img src={item.images[1].url} alt={item.name} className="artistPhoto"/>
+                        <img src={item.images[1].url} alt={item.name} style={{
+                            width:"90%"
+                        }} />
                         </div>
                         
                         <p className="albumTitle" style={{fontSize:"1.25rem", width: '10rem', textAlign:"left"}}><a href={`/albums/${item.id}`}>

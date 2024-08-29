@@ -116,6 +116,16 @@ a:hover{
 #playback_monitor_container{
     width: 65%
 }
+.header_links{
+    display: block;
+    margin: 0.5rem 0;
+    text-align: left;
+}
+.header_link_container{
+    display: grid;
+    grid-template-columns: 20% auto;
+    align-items: center;
+}
 
 @media screen and (max-width: 768px) {
     html{
@@ -172,7 +182,7 @@ a:hover{
         outline: none;
     }
     #player{
-        grid-template-columns: 80% 15%;
+        grid-template-columns: 70% 15%;
         justify-items: center;
         justify-content: center;
     }
@@ -180,6 +190,6 @@ a:hover{
         width: 100%;
     }
     .playlist_img{
-        width: "90%"
+        width: 90%
     }
 } 

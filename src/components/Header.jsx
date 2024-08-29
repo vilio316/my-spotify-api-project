@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useFindUserQuery } from "../loaders/apiSlice"
 import { useNavigate } from "react-router-dom";
-
+import { FaHome, FaUser } from 'react-icons/fa'
+import { IoSettingsSharp } from "react-icons/io5";
 
 export function Header(){
     const {data} = useFindUserQuery();
@@ -22,10 +23,26 @@ export function Header(){
         <a>{data.display_name}</a>
         </p>
         {state ?
-        <div style={{position: "absolute", right: '0', top: "1.5rem", zIndex:"2", padding:"0.25rem", backgroundColor:"gray", borderRadius:"1.25rem" }}>
-            <a href={'/'} style={{display: "block", padding:'0.25rem'}}>Home</a>
-            <a href={`/user-playlists`} style={{display: "block", padding:'0.25rem'}}>Your Profile</a>
-            <a href={`/user-playlists`} style={{display: "block", padding:'0.25rem'}}>Settings</a>
+        <div style={{position: "absolute", width:"10rem", height:"10rem", right: '0', top: "1.5rem", zIndex:"2", padding:"0.75rem 0.5rem", backgroundColor:"gray", borderRadius:"1.25rem" }}>
+            <div className="header_link_container">
+            <FaHome size={'1.5em'}/>
+            <a href={'/'} className="header_link"> 
+            Home</a>
+            </div>
+
+            <div className="header_link_container">
+            <FaUser size={'1.5em'}/>
+            <a href={`/user-playlists`} className="header_links">
+            Your Profile</a>
+            </div>
+
+            <div  
+            className="header_link_container"
+            >
+            <IoSettingsSharp size={'1.5em'}/>
+            <a href={`/user-playlists`} className="header_links">
+            Settings</a>
+            </div>
         </div>
 : <></>}
         </div>: 

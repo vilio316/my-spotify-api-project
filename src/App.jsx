@@ -99,9 +99,6 @@ function App() {
                   <>
                   <Header/>
                   <h2>Your User Profile</h2>
-                  <div onClick={goThere}>
-                    <ProfileShort/>
-                  </div>
                   <form>
                   <h2>Search for Anything Here: </h2>
             <input type = "text" placeholder="Enter Search Term" style={{
@@ -109,8 +106,10 @@ function App() {
               }} onChange={(e)=> {if(e.target.value.length > 0){setName(e.target.value)}}}/>
             <SearchProcessor search={artistName}/>
           </form>
-          <p>
-          </p>
+                  <div onClick={goThere}>
+                    <ProfileShort/>
+                  </div>
+              
                   <button style={{outline: "none", border: "none", borderRadius:"2.5rem", padding: '0.5rem', display:"block", backgroundColor:"green", width:"12.5rem", fontSize: '1.5rem'}} onClick={logout}>Log 
                   Out</button>
                   </> 

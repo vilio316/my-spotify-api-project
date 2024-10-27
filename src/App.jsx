@@ -98,14 +98,14 @@ function App() {
                   : 
                   <>
                   <Header/>
-                  <h2>Your User Profile</h2>
                   <form>
-                  <h2>Search for Anything Here: </h2>
-            <input type = "text" placeholder="Enter Search Term" style={{
+            <input type = "text" placeholder="Search for anything here..." style={{
               outline: "none", border:"2px solid green", borderRadius:"1.25rem", fontSize:"1.5rem", padding: '0.25rem 0.5rem'
               }} onChange={(e)=> {if(e.target.value.length > 0){setName(e.target.value)}}}/>
             <SearchProcessor search={artistName}/>
           </form>
+
+                  <h2>Your User Profile</h2>
                   <div onClick={goThere}>
                     <ProfileShort/>
                   </div>

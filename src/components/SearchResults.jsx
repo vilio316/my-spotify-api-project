@@ -10,8 +10,8 @@ export function SearchResults(props){
         {search_term.length > 0 ? <>
             {data ? 
             <>
-            <h2>{`Search Results (${data.tracks.items.length}) `}</h2>
-            <div>{data.tracks.items.map((item)=> (
+            <h2 style={{padding:'0.5rem'}}>{`Search Results (${data.tracks.items.length}) `}</h2>
+            <div style={{padding:'0.25rem 0.5rem'}}>{data.tracks.items.map((item)=> (
             <SongFromSearch object={item} key={item.id}/>
         ))} </div>
         </>: <p>There aren't any great matches for your search</p>}

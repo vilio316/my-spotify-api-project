@@ -23,7 +23,7 @@ export function Header(){
         <a>{data.display_name}</a>
         </p>
         {state ?
-        <div style={{position: "absolute", width:"10rem", height:"10rem", right: '0', top: "1.5rem", zIndex:"2", padding:"0.75rem 0.5rem", backgroundColor:"gray", borderRadius:"1.25rem" }}>
+        <div style={{position: "absolute", width:"10rem", right: '0', top: "1.5rem", zIndex:"2", padding:"0.75rem 0.5rem", backgroundColor: 'rgba(0, 205, 0, 0.75)', borderRadius:"1rem" }}>
             <div className="header_link_container">
             <FaHome size={'1.5em'}/>
             <a href={'/'} className="header_link"> 

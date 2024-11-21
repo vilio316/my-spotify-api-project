@@ -24,8 +24,8 @@ function makeTimetoSeconds(time_val){
             <div className="grid" id='player'>
             <SongFromSearch object={data.item}/>
             <div>
-                <button style={{width: '5rem' ,height:"5rem", outline:"none", border:"none", borderRadius:'50%'}}>
-                    {!data.is_playing ? <FaPlay size={'2.5rem'}/> : <FaPause size={'2.5rem'}/> }
+                <button style={{width: '3.5rem' ,height:"3.5rem", outline:"none", border:"none", borderRadius:'50%'}}>
+                    {!data.is_playing ? <FaPlay size={'2rem'}/> : <FaPause size={'2rem'}/> }
                 </button>
             </div>
             </div>
@@ -35,7 +35,8 @@ function makeTimetoSeconds(time_val){
                 display:"grid",
                 gridTemplateColumns:"auto auto",
                 width:"85%",
-                justifySelf:"center"
+                justifySelf:"center",
+                alignItems:'end'
             }}>
             <span>{makeTimeString(data.progress_ms)} / {makeTimeString(data.item.duration_ms)} </span>
             <PlayState/>

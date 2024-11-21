@@ -10,6 +10,7 @@ html{
 }
 #root{
     display: grid;
+    padding: 0.5rem
 }
 .artiste_header{
     display: grid;
@@ -50,15 +51,17 @@ h2{
 }
 #song_title{
     font-size: 1.5rem;
+    margin: 0.5rem 0
 }
 #artistName{
     font-size: 1rem;
+    margin:0.25rem 0;
 }
 .album_song{
     grid-template-columns: 50% 40%;
 }
 #search_comp{
-    grid-template-columns: 10% 70% auto;
+    grid-template-columns: 15% 70% auto;
 }
 button{
     font-family: "Kanit", sans-serif;

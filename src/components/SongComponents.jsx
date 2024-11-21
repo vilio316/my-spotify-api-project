@@ -12,7 +12,7 @@ export function SongFromSearch(props){
              }
                 }>
             <div>
-                <img src={object.album.images[1].url} alt={object.name} style={{width: "90%",}}></img>
+                <img src={object.album.images[1].url} alt={object.name} style={{width: "90%"}}></img>
             </div>
         <div key={object.id}  style={
             {padding: '0.5rem'}

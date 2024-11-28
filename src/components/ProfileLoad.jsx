@@ -15,9 +15,7 @@ export default function ProfileUI(){
         <h2><u>Your Profile Data</u></h2>
         <NowPlaying/>
         <ProfileShort/>
-        <ShowTopItems/>
-        <ProfileShow/>
-        
+        <ShowTopItems/>    
         </>
     )
 }
@@ -46,7 +44,47 @@ export function ProfileShort(){
 }
 
 export function ProfileShow(){
-    const { data, error, isLoading } = useFindUserDetailsQuery();
+    let obj1 = {
+        start: 0,
+        lim: 6
+    }
+    const { data, error, isLoading } = useFindUserDetailsQuery(obj1);
+
+    function SecondHalf(){
+        let obj2 = {
+            start: 7,
+            lim:99
+        }
+        const {data} = useFindUserDetailsQuery(obj2)
+        return(
+            <>
+            {data?
+                <>
+                {data.display_name}
+                <div>
+                    {data.items.map((playlist) => (
+                    <div key={playlist.id} style={{display:"grid", gridTemplateColumns:"20% auto", alignContent:"center", alignItems:"center", gap:"0.25rem 0.5rem", margin:"0.5rem 0"}}>
+                    <div className="grid" style={{
+                        justifyContent:"center", 
+                        justifyItems:'center'
+                    }}>
+                        <img src={playlist.images[0].url} className="playlist_img" />
+                    </div>
+                    <div>
+                        <p style={{fontSize: "1.5rem", width:"85%", whiteSpace:"wrap"}}> 
+                        <a href={`/playlists/${playlist.id}`}>{playlist.name}</a></p>
+                    </div> 
+                    </div>   
+                ))}</div>
+                </>
+            : <>
+                <p>Loading...</p>
+            </>    
+        }
+            </>
+        )
+    }
+
 
     return(
         <>
@@ -71,7 +109,9 @@ export function ProfileShow(){
                     <a href={`/playlists/${playlist.id}`}>{playlist.name}</a></p>
                 </div> 
                 </div>   
-            ))}</div>
+            ))}
+            <SecondHalf/>
+            </div>
             </>
         : <>
             <p>Loading...</p>
@@ -132,7 +172,7 @@ return(
                     <img className="artistPhoto" src = {item.images[0].url} alt={item.name}/>
                     </div>
                     <p className="albumTitle" style={{textAlign:'center'}}><a href={`/artists/${item.id}`} style={{fontSize:'1.5rem'}}>{item.name}</a></p>
-                </div>
+        </div>
             ))}
         </div>
         </> : <p>...</p>}

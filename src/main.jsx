@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
-import ProfileUI from './components/ProfileLoad.jsx'
+import ProfileUI, { ProfileShow } from './components/ProfileLoad.jsx'
 import { PersistGate } from 'redux-persist/integration/react'
 import { perStore, store } from './store/store.js'
 import { Provider } from 'react-redux'
@@ -40,7 +40,11 @@ const routes = createBrowserRouter([
     path: 'albums/:ID',
     element: <Album_Info/>,
     errorElement: <Error/>
-
+  },
+  {
+    path: 'playlists',
+    element: <ProfileShow/>,
+    errorElement: <Error/>
   }
 ])
 

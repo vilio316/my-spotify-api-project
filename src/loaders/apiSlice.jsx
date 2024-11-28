@@ -12,7 +12,7 @@ export const spotifyApi = createApi({
     }),
     endpoints: (builder)=> ({
         findUserDetails: builder.query({
-            query: () => `/me/playlists`,
+            query: (object) => `/me/playlists?offset=${object.start}&limit=${object.lim}`,
         }),
         findUser: builder.query({
             query: () => `/me`,

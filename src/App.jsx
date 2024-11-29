@@ -110,7 +110,7 @@ function App() {
                     <ProfileShort/>
                   </div>
               
-                  <button style={{outline: "none", border: "none", borderRadius:"2.5rem", padding: '0.5rem', display:"block", backgroundColor:"green", width:"12.5rem", fontSize: '1.5rem'}} onClick={logout}>Log 
+                  <button style={{outline: "none", border: "none", borderRadius:"2.5rem", padding: '0.5rem', display:"block", backgroundColor:"green", width:"12.5rem", fontSize: '1.5rem', margin: '0.5rem 0'}} onClick={logout}>Log 
                   Out</button>
                   </> 
                   }

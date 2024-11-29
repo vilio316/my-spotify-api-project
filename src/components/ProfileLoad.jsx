@@ -1,6 +1,6 @@
 import { useLoaderData, useNavigate } from "react-router-dom";
-import { useSelector } from 'react-redux'
-import { access_token } from "../store_slices/idSlice";
+import { useDispatch, useSelector } from 'react-redux'
+import { access_token, setUserID, user_id } from "../store_slices/idSlice";
 import { useEffect, useState } from "react";
 import { useFindUserQuery, useFindUserDetailsQuery, useFindUserTopItemsQuery, useFindUserTopArtistsQuery } from "../loaders/apiSlice";
 import { Header } from "./Header";
@@ -21,8 +21,11 @@ export default function ProfileUI(){
 }
 
 export function ProfileShort(){
+    let dispatch = useDispatch()
     const {data} = useFindUserQuery();
-
+    if(data){
+    dispatch(setUserID(data.id))
+    }
     return(
         <>
             {data? <>
@@ -44,46 +47,8 @@ export function ProfileShort(){
 }
 
 export function ProfileShow(){
-    let obj1 = {
-        start: 0,
-        lim: 6
-    }
-    const { data, error, isLoading } = useFindUserDetailsQuery(obj1);
-
-    function SecondHalf(){
-        let obj2 = {
-            start: 7,
-            lim:99
-        }
-        const {data} = useFindUserDetailsQuery(obj2)
-        return(
-            <>
-            {data?
-                <>
-                {data.display_name}
-                <div>
-                    {data.items.map((playlist) => (
-                    <div key={playlist.id} style={{display:"grid", gridTemplateColumns:"20% auto", alignContent:"center", alignItems:"center", gap:"0.25rem 0.5rem", margin:"0.5rem 0"}}>
-                    <div className="grid" style={{
-                        justifyContent:"center", 
-                        justifyItems:'center'
-                    }}>
-                        <img src={playlist.images[0].url} className="playlist_img" />
-                    </div>
-                    <div>
-                        <p style={{fontSize: "1.5rem", width:"85%", whiteSpace:"wrap"}}> 
-                        <a href={`/playlists/${playlist.id}`}>{playlist.name}</a></p>
-                    </div> 
-                    </div>   
-                ))}</div>
-                </>
-            : <>
-                <p>Loading...</p>
-            </>    
-        }
-            </>
-        )
-    }
+    const identifier = useSelector(user_id)
+    const { data, error, isLoading } = useFindUserDetailsQuery(identifier);
 
 
     return(
@@ -96,7 +61,7 @@ export function ProfileShow(){
         <>
             {data.display_name}
             <div>
-                {data.items.map((playlist) => (
+                {data.items.filter((value) => value!= null).map((playlist) => (
                 <div key={playlist.id} style={{display:"grid", gridTemplateColumns:"20% auto", alignContent:"center", alignItems:"center", gap:"0.25rem 0.5rem", margin:"0.5rem 0"}}>
                 <div className="grid" style={{
                     justifyContent:"center", 
@@ -110,7 +75,6 @@ export function ProfileShow(){
                 </div> 
                 </div>   
             ))}
-            <SecondHalf/>
             </div>
             </>
         : <>

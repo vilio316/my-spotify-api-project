@@ -4,7 +4,6 @@ export const tokenSlice = createSlice({
     name: "token",
     initialState: {
         value : "",
-        userID: ''
     },
     reducers:{
         storeToken: (state, action) => {
@@ -13,13 +12,9 @@ export const tokenSlice = createSlice({
         clearToken: () =>{
             return{ ...state, value: ""}
         },
-        setUserID: (state, action) => {
-            return {...state, userID :action.payload }
-        }
     }
 })
 
 export const access_token = (state) => state.token.value
-export const user_id = (state) => state.token.userID
-export const {storeToken, clearToken, setUserID} = tokenSlice.actions
+export const {storeToken, clearToken} = tokenSlice.actions
 export default tokenSlice.reducer

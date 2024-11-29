@@ -12,13 +12,13 @@ export const spotifyApi = createApi({
     }),
     endpoints: (builder)=> ({
         findUserDetails: builder.query({
-            query: (uid) => `/users/${uid}/playlists`,
+            query: () => `/me/playlists`,
         }),
         findUser: builder.query({
             query: () => `/me`,
         }),
         findUserTopArtists: builder.query({
-            query: () => `/me/top/artists?time_range=short_term&limit=20`
+            query: () => `/me/top/artists?time_range=short_term&limit=30`
         })
         ,
         findUserTopItems: builder.query({

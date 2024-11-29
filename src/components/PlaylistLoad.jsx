@@ -37,8 +37,14 @@ export function Playlist(){
         <img src={data.images[0].url} alt={data.name} style={{opacity: "0.8"}}/>
         </div>
         <div style={{fontSize:"1.5rem"}}>  
-            <p>Items : <b>{data.tracks.items.length}</b> songs</p>
-        <p>Popularity Score: <b>{popScore(data.tracks.items)}</b></p>
+            <p>Items : <b>{data.tracks.total}</b> songs</p>
+           
+        <p style={{
+            fontSize: '0.75rem'
+        }}>Popularity Score: <b>{popScore(data.tracks.items)}</b></p>
+        {data.tracks.total > 100? <p style={{
+            fontSize: '0.75rem'
+        }}>Showing first 100 songs</p>: <p></p>}
         </div>
         </div>
      

@@ -3,6 +3,7 @@ import { useFindUserQuery } from "../loaders/apiSlice"
 import { useNavigate } from "react-router-dom";
 import { FaHome, FaUser } from 'react-icons/fa'
 import { IoSettingsSharp } from "react-icons/io5";
+import { MdPlaylistPlay } from "react-icons/md";
 
 export function Header(){
     const {data} = useFindUserQuery();
@@ -24,10 +25,17 @@ export function Header(){
         </p>
         {state ?
         <div style={{position: "absolute", width:"10rem", right: '0', top: "1.5rem", zIndex:"2", padding:"0.75rem 0.5rem", backgroundColor: 'rgba(0, 205, 0, 0.75)', borderRadius:"1rem" }}>
+           
             <div className="header_link_container">
             <FaHome size={'1.5em'}/>
             <a href={'/'} className="header_link"> 
             Home</a>
+            </div>
+
+            <div className="header_link_container">
+            <MdPlaylistPlay size={'1.5rem'}/>
+            <a href={'/playlists'} className="header_link"> 
+            Your Playlists</a>
             </div>
 
             <div className="header_link_container">

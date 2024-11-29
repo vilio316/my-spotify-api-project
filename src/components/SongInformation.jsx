@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom'
 import { useGetSongDetailsQuery } from '../loaders/apiSlice';
-import { makeTimeString } from "../components/PlaylistLoad"
+import { makeTimeString } from "./PlaylistLoad"
 import { Header } from './Header';
 import logo from '../assets/Spotify_Icon_RGB_Green.png'
 

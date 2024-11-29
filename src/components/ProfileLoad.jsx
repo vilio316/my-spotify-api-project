@@ -1,6 +1,6 @@
 import { useLoaderData, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux'
-import { access_token, setUserID, user_id } from "../store_slices/idSlice";
+import { access_token } from "../store_slices/idSlice";
 import { useEffect, useState } from "react";
 import { useFindUserQuery, useFindUserDetailsQuery, useFindUserTopItemsQuery, useFindUserTopArtistsQuery } from "../loaders/apiSlice";
 import { Header } from "./Header";
@@ -21,11 +21,8 @@ export default function ProfileUI(){
 }
 
 export function ProfileShort(){
-    let dispatch = useDispatch()
     const {data} = useFindUserQuery();
-    if(data){
-    dispatch(setUserID(data.id))
-    }
+    
     return(
         <>
             {data? <>
@@ -47,30 +44,29 @@ export function ProfileShort(){
 }
 
 export function ProfileShow(){
-    const identifier = useSelector(user_id)
-    const { data, error, isLoading } = useFindUserDetailsQuery(identifier);
+    const { data, error, isLoading } = useFindUserDetailsQuery();
 
 
     return(
         <>
-       
+       <Header/>
         <h3 style={{
             margin:'0.75rem 0 0.25rem 0'
-        }}>Your Playlists: </h3>
+        }}>Your Playlists ({data ? data.items.length: 0}): </h3>
         <div>{data?
         <>
             {data.display_name}
-            <div>
+            <div id="five_columns">
                 {data.items.filter((value) => value!= null).map((playlist) => (
-                <div key={playlist.id} style={{display:"grid", gridTemplateColumns:"20% auto", alignContent:"center", alignItems:"center", gap:"0.25rem 0.5rem", margin:"0.5rem 0"}}>
+                <div key={playlist.id} style={{display:"grid", justifyContent:"center", alignItems:"center", margin:"0.25rem 0", padding: '0.5rem 0'}}>
                 <div className="grid" style={{
                     justifyContent:"center", 
                     justifyItems:'center'
                 }}>
-                    <img src={playlist.images[0].url} className="playlist_img" />
+                    <img src={playlist.images[0].url} className="artistPhoto" />
                 </div>
                 <div>
-                    <p style={{fontSize: "1.5rem", width:"85%", whiteSpace:"wrap"}}> 
+                    <p style={{fontSize: "1.25rem", width:"10rem", whiteSpace:"nowrap", textOverflow:"ellipsis", overflow:'hidden'}}> 
                     <a href={`/playlists/${playlist.id}`}>{playlist.name}</a></p>
                 </div> 
                 </div>   
@@ -92,7 +88,6 @@ let navigate = useNavigate()
 return(
     <>
     {data? <>
-        <h2 style={{textDecoration:"underline"}}>Your Top Songs</h2>
         <div className="buttonHaus" style={{gridTemplateColumns:"auto auto auto", margin: '0.5rem 0'}}>
             <button onClick={()=> editRange('short_term')}>4 Weeks</button>
             <button onClick={()=> editRange('medium_term')}>6 Months</button>
@@ -128,7 +123,6 @@ return(
     return(
         <>
         {data? <>
-        <h2><u>Your Top Artists</u></h2>
         <div id='five_cols'>
             {data.items.map((item) => (
                 <div key={item.id} onClick={()=> navegando(`/artists/${item.id}`)}>
@@ -149,11 +143,21 @@ return(
 
     return(
         <>
+        <div style={{
+            display: "flex",
+            flexDirection: 'column-reverse'
+        }}>
+        <div>
         {showState? <GetUserTopArtists/> : <GetUserTopTracks/>}
-        <div className='buttonHaus' style={{display:"grid", width: "100%", justifyItems:"center", gridTemplateColumns:"auto auto", justifyContent:"center"}}>
+        </div>
+        <div className='buttonHaus' style={{display:"flex", width: "100%", margin:"0.5rem 0", gap:'0.5rem'}}>
             <button onClick={()=> setState(true)}>Artists</button>
             <button onClick={()=> setState(false)}>Tracks</button>
             </div>
+            <h2 style={{
+                marginTop: '0.5rem'
+            }}><u>Your Top {showState? 'Songs': "Artists"}</u></h2>
+        </div>
         </>
     )
  }

@@ -14,14 +14,20 @@ export function Album_Info(){
         {data ? <>
         <div id='song_card'>
             <div style={{display:"grid", placeItems:"center"}}>
-            <img src = {data.images[1].url} style={{ width:"90%"}} alt={`${data.name} Album Cover Art`} />
+            <img src = {data.images[1].url} style={{ width:"75%"}} alt={`${data.name} Album Cover Art`} />
             </div>
             <div style={{alignSelf:"center"}}>
                 <h2>{data.name}</h2>
-                <p>Artist(s): {data.artists.map((artiste) => (
-            <span key={artiste.id}><a style={{textDecoration: "none", fontStyle:"italic"}} href={`/artists/${artiste.id}`}>{artiste.name} - </a></span>
-        ))}</p>
-                <p>{data.tracks.items.length} songs</p>
+                <p>Artist(s):
+                 {
+            data.artists.length > 1? 
+            data.artists.map((artiste) => (
+            <span key={artiste.id}><a style={{textDecoration: "none"}} href={`/artists/${artiste.id}`}>{artiste.name} - </a></span>
+        )): <span>
+            <a style={{textDecoration: "none"}} href={`/artists/${data.artists[0].id}`}> {data.artists[0].name}</a></span>
+            }
+            </p>
+                <p>Songs: {data.tracks.items.length}</p>
                 <p>Release Date: {data.release_date}</p>
             </div>
         </div>

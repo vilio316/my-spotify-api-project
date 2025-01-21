@@ -7,7 +7,6 @@ import { MdPlaylistPlay } from "react-icons/md";
 
 export function Header(){
     const {data} = useFindUserQuery();
-    let navigate = useNavigate();
     let [state, setState] = useState(false)
 
     return(
@@ -40,7 +39,7 @@ export function Header(){
 
             <div className="header_link_container">
             <FaUser size={'1.5em'}/>
-            <a href={`/user-playlists`} className="header_links">
+            <a href={`/user-profile`} className="header_links">
             Your Profile</a>
             </div>
 
@@ -48,7 +47,7 @@ export function Header(){
             className="header_link_container"
             >
             <IoSettingsSharp size={'1.5em'}/>
-            <a href={`/user-playlists`} className="header_links">
+            <a href={`/user-profile`} className="header_links">
             Settings</a>
             </div>
         </div>

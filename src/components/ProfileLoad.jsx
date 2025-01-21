@@ -1,4 +1,4 @@
-import { useLoaderData, useNavigate } from "react-router-dom";
+import { Link, useLoaderData, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux'
 import { access_token } from "../store_slices/idSlice";
 import { useEffect, useState } from "react";
@@ -11,11 +11,13 @@ export default function ProfileUI(){
 
     return(
         <>
+        <div className="wrapper">
          <Header/>
         <h2><u>Your Profile Data</u></h2>
         <NowPlaying/>
         <ProfileShort/>
         <ShowTopItems/>    
+        </div>
         </>
     )
 }
@@ -44,11 +46,11 @@ export function ProfileShort(){
 }
 
 export function ProfileShow(){
-    const { data, error, isLoading } = useFindUserDetailsQuery();
-
+    const { data} = useFindUserDetailsQuery();
 
     return(
         <>
+        <div className="wrapper">
        <Header/>
         <h3 style={{
             margin:'0.75rem 0 0.25rem 0'
@@ -63,11 +65,14 @@ export function ProfileShow(){
                     justifyContent:"center", 
                     justifyItems:'center'
                 }}>
-                    <img src={playlist.images[0].url} className="artistPhoto" />
+                    <img src={playlist.images[0].url} className="artistPhoto"/>
                 </div>
                 <div>
-                    <p style={{fontSize: "1.25rem", width:"10rem", whiteSpace:"nowrap", textOverflow:"ellipsis", overflow:'hidden'}}> 
-                    <a href={`/playlists/${playlist.id}`}>{playlist.name}</a></p>
+                    <p className="albumTitle">
+                    <Link to={`/playlists/${playlist.id}`} >
+                    {playlist.name}
+                    </Link>
+                    </p>
                 </div> 
                 </div>   
             ))}
@@ -76,6 +81,7 @@ export function ProfileShow(){
         : <>
             <p>Loading...</p>
         </>  }</div>
+        </div>
         </>
     )
 }
@@ -133,7 +139,7 @@ return(
         </div>
             ))}
         </div>
-        </> : <p>...</p>}
+        </> : <p>Loading...</p>}
         </>
     )
  }

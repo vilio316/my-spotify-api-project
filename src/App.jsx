@@ -48,7 +48,7 @@ function App() {
   const navigate = useNavigate();
 
   const goThere = () => {
-    navigate("/user-playlists")
+    navigate("/user-profile")
   }
 
 

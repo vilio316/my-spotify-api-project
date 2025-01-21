@@ -19,7 +19,7 @@ const routes = createBrowserRouter([
     errorElement: <Error/>
   },
   {
-    path: '/user-playlists',
+    path: '/user-profile',
     element: <ProfileUI/>,
     errorElement: <Error/>
   }, {

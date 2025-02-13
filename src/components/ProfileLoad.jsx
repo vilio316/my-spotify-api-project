@@ -46,7 +46,7 @@ export function ProfileShort(){
 }
 
 export function ProfileShow(){
-    const { data} = useFindUserDetailsQuery();
+    const {data} = useFindUserDetailsQuery();
 
     return(
         <>
@@ -162,7 +162,7 @@ return(
             </div>
             <h2 style={{
                 marginTop: '0.5rem'
-            }}><u>Your Top {showState? 'Songs': "Artists"}</u></h2>
+            }}><u>Your Top {showState? 'Artists': "Songs"}</u></h2>
         </div>
         </>
     )

@@ -195,7 +195,7 @@ a:hover{
         grid-template-columns: 75% auto;
     }
     #playlist_title{
-        max-width: 12.5rem;
+        max-width: 20rem;
         white-space: wrap;
         text-align: left;
         margin: 0.5rem 0;

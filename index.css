@@ -85,6 +85,15 @@ a:hover{
     object-fit: cover; 
     
 }
+.five-columns{
+    display: grid;
+    grid-template-columns: auto auto auto auto auto;
+    row-gap: 1rem;
+}
+
+.playlist_container{
+    justify-content: center;
+}
 
 #five_columns{
     display: grid;
@@ -146,6 +155,9 @@ a:hover{
     margin: 0.5rem 0;
     text-align: left;
 }
+.info-block{
+    display: none;
+}
 .header_link_container{
     display: grid;
     grid-template-columns: 20% auto;
@@ -157,8 +169,15 @@ a:hover{
     html{
         font-size: 12px;
     }
+    .five-columns{display: grid; grid-template-columns: auto; gap: 0.5rem}
     .listening_device{
         margin-right: 1.5rem;
+    }
+    .info-block{display: block;}
+    .playlist_container{
+        grid-template-columns: auto auto;
+        column-gap: 0.75rem;
+        justify-content: start;
     }
     #song_card, .artiste_header{
         grid-template-columns: auto;
@@ -174,6 +193,12 @@ a:hover{
     }
     .album_song{
         grid-template-columns: 75% auto;
+    }
+    #playlist_title{
+        max-width: 12.5rem;
+        white-space: wrap;
+        text-align: left;
+        margin: 0.5rem 0;
     }
     #search_comp{
         grid-template-columns: 20% 60% auto;

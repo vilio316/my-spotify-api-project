@@ -58,9 +58,9 @@ export function ProfileShow(){
         <div>{data?
         <>
             {data.display_name}
-            <div id="five_columns">
+            <div className="five-columns">
                 {data.items.filter((value) => value!= null).map((playlist) => (
-                <div key={playlist.id} style={{display:"grid", justifyContent:"center", alignItems:"center", margin:"0.25rem 0", padding: '0.5rem 0'}}>
+                <div className="playlist_container"  key={playlist.id} style={{display:"grid", alignItems:"center", margin:"0.25rem 0", padding: '0.5rem 0'}}>
                 <div className="grid" style={{
                     justifyContent:"center", 
                     justifyItems:'center'
@@ -68,10 +68,14 @@ export function ProfileShow(){
                     <img src={playlist.images[0].url} className="artistPhoto"/>
                 </div>
                 <div>
-                    <p className="albumTitle">
+                    <p className="albumTitle" id='playlist_title'>
                     <Link to={`/playlists/${playlist.id}`} >
                     {playlist.name}
                     </Link>
+                    </p>
+                    <p className="info-block">
+                        <p>Owner: {playlist.owner.display_name}</p>
+                        <p>{playlist.tracks.total} items</p>
                     </p>
                 </div> 
                 </div>   

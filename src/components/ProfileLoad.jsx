@@ -49,7 +49,6 @@ export function ProfileShow(){
     const {data} = useFindUserDetailsQuery();
 
     return(
-        <>
         <div className="wrapper">
        <Header/>
         <h3 style={{
@@ -60,7 +59,7 @@ export function ProfileShow(){
             {data.display_name}
             <div className="five-columns">
                 {data.items.filter((value) => value!= null).map((playlist) => (
-                <div className="playlist_container"  key={playlist.id} style={{display:"grid", alignItems:"center", margin:"0.25rem 0", padding: '0.5rem 0'}}>
+                <div className="playlist_container"  key={playlist.id} style={{display:"grid", alignItems:"center", margin:"0.25rem 0"}}>
                 <div className="grid" style={{
                     justifyContent:"center", 
                     justifyItems:'center'
@@ -86,7 +85,6 @@ export function ProfileShow(){
             <p>Loading...</p>
         </>  }</div>
         </div>
-        </>
     )
 }
 
@@ -152,7 +150,6 @@ return(
     let [showState, setState] = useState('false')
 
     return(
-        <>
         <div style={{
             display: "flex",
             flexDirection: 'column-reverse'
@@ -168,6 +165,5 @@ return(
                 marginTop: '0.5rem'
             }}><u>Your Top {showState? 'Artists': "Songs"}</u></h2>
         </div>
-        </>
     )
  }

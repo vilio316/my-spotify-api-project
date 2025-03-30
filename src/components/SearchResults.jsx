@@ -26,8 +26,7 @@ export function SearchResults(props){
 
 export function SearchProcessor(props){
     let search = props.search
-    console.log(search)
-
+    
     if(props.search.length > 0){
         return (
             <SearchResults search_term={search}/>

@@ -6,6 +6,7 @@ import { useFindUserQuery, useFindUserDetailsQuery, useFindUserTopItemsQuery, us
 import { Header } from "./Header";
 import logo from '../assets/Spotify_Icon_RGB_Green.png'
 import { NowPlaying } from "./Now Playing";
+import { SongFromSearch } from "./SongComponents";
 
 export default function ProfileUI(){
 
@@ -101,7 +102,7 @@ return(
             <button onClick={()=> editRange('medium_term')}>6 Months</button>
             <button onClick={()=> editRange('long_term')}>&gt; 1 Year</button>
         </div>
-        <div id="five_cols">
+        <div id="five_cols_desktop">
         {data.items.map((item) => (
             <div key={item.id} onClick={()=> 
                 navigate(`/song/${item.id}`)
@@ -118,6 +119,22 @@ return(
                 </div>
             </div>
         ))}
+        </div>
+        <div id='mobile_version'>
+            {
+                data.items.map((item) => (
+                    <div className="grid" style={{
+                        gridTemplateColumns: 'auto auto',
+                        alignItems: "center"
+                    }} key={item.id}>
+                    <p style={{
+                        fontSize: '1.5rem',
+                        padding: '0 0.75rem',
+                    }}>{data.items.indexOf(item) + 1}.</p>
+                    <SongFromSearch object={item} key={item.id}/>
+                    </div>
+                ))
+            }
         </div>
     </> : <>{error? <p>{error.data.error.message}</p> : <p>Loading...</p>}</>}
     </>

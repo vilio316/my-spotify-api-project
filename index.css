@@ -8,6 +8,9 @@ html{
 .grid{
     display: grid
 }
+.active{
+    text-decoration: underline;
+}
 #root{
     display: grid;
     padding: 0.5rem
@@ -30,7 +33,7 @@ a{
     grid-template-columns: auto auto auto auto auto;
 }
 
-.buttonHaus > button{
+.buttonHaus > button, .clear_butt{
     color: white;
     background-color: #1DB954;
     padding: 0.5rem;
@@ -152,7 +155,7 @@ a:hover{
     width: 65%
 }
 .header_links{
-    font-size: 1.25rem;
+    font-size: 1rem;
     display: block;
     margin: 0.5rem 0;
     text-align: left;
@@ -175,8 +178,6 @@ a:hover{
     margin: 0.25rem 0
 }
 
-
-
 @media screen and (max-width : 480px){
     .five-columns{ gap: 0.25rem}
     #song_title{font-size: 1rem; max-width: 12.5rem; white-space: wrap;}
@@ -197,6 +198,16 @@ a:hover{
     .listening_device{
         margin-right: 1.5rem;
     }
+
+    .buttonHaus > button, .clear_butt{
+        border-radius: 0.75rem;
+        width: 7.5rem;
+        margin: 0.5rem 0.25rem;
+        border: none;
+        outline: none;
+    }
+   
+
     .info-block{display: block;}
     .playlist_container{
         grid-template-columns: auto auto;
@@ -258,16 +269,7 @@ a:hover{
         justify-items: center;
         justify-content: center;
     }
-    .buttonHaus > button, .clear_butt{
-        border-radius: 0.75rem;
-        width: 7.5rem;
-        margin: 0.5rem 0.25rem;
-        border: none;
-        outline: none;
-    }
-    .clear_butt{
-        font-size: 1.25rem; color: white; background-color: green; border-radius: 1.25rem;
-    }
+   
     #player{
         grid-template-columns: 80% 15%;
         justify-items: center;

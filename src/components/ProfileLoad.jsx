@@ -175,8 +175,8 @@ return(
         {showState? <GetUserTopArtists/> : <GetUserTopTracks/>}
         </div>
         <div className='buttonHaus' style={{display:"flex", width: "100%", margin:"0.5rem 0", gap:'0.5rem'}}>
-            <button onClick={()=> setState(true)}>Artists</button>
-            <button onClick={()=> setState(false)}>Tracks</button>
+            <button onClick={()=> setState(true)} className={showState ? 'active' : ''}>Artists</button>
+            <button onClick={()=> setState(false)} className={!showState ? 'active' : ''}>Tracks</button>
             </div>
             <h2 style={{
                 marginTop: '0.5rem'

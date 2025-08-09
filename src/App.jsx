@@ -13,6 +13,7 @@ function App() {
   let dispatch = useDispatch()
   useEffect(() => {
       const hash = window.location.hash
+      console.log(hash)
       let token = window.localStorage.getItem("token")
 
       if (!token && hash) {
@@ -50,11 +51,8 @@ function App() {
               </header>
              
               {!token ?
-               <div style={{width:'100%', height:'80vh', display:"grid"}}>
                   <a style={{borderRadius:"1.5rem", color: 'black', backgroundColor:"green", fontSize:"1.5rem", placeSelf:"center", padding: '0.5rem'}} href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}>Login
                       to Spotify</a>
-                      </div>
-
                   : <>
                   <form onSubmit={searchForArtist}>
             <input type = "text" placeholder="Enter Artist Name" onChange={(e)=> setName(e.target.value)}/>

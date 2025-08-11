@@ -51,3 +51,24 @@ export function SongInAlbum(props){
     </div>
     )
 }
+
+export function RecentlySong(props){
+    const item_obj = props.item
+    return(
+        <div className="grid" style={{
+            gridTemplateColumns: "12.5% 70%"
+        }}>
+            <div className="grid" style={{
+                justifyContent: "center"
+            }}>
+            <img src = {item_obj.track.album.images[1].url} style={{
+                width: "90%"
+            }}/>
+            </div>
+            <div>
+                <p id="song_title">{item_obj.track.name}</p>
+                <p>{item_obj.track.album.artists[0].name}</p>
+            </div>
+        </div>
+    )
+}

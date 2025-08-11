@@ -8,7 +8,6 @@ import { MdPlaylistPlay } from "react-icons/md";
 export function Header(){
     const {data} = useFindUserQuery();
     let [state, setState] = useState(false)
-
     return(
         <>
         {data ? <div style={{position:"relative"}} onMouseEnter={() => setState(true)} onMouseLeave={()=> setState(false)}>
@@ -22,6 +21,7 @@ export function Header(){
                 }}>
         <a>{data.display_name}</a>
         </p>
+        
         {state ?
         <div style={{position: "absolute", width:"12.5rem", right: '0', top: "1.5rem", zIndex:"2", padding:"0.75rem 0.5rem", backgroundColor: 'rgba(0, 205, 0, 0.75)', borderRadius:"1rem" }}>
            

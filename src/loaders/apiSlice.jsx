@@ -50,6 +50,9 @@ export const spotifyApi = createApi({
         }),
         fetchPlaybackState : builder.query({
             query:(name) => `/me/player`
+        }),
+        fetchRecentlyPlayed: builder.query({
+            query: (timeVal) => `/me/player/recently-played?limit=50&after=${timeVal}`
         })
     })
 })
@@ -68,4 +71,5 @@ export const {
     useFindUserTopArtistsQuery,
     useGetNowPlayingQuery,
     useFetchPlaybackStateQuery,
+    useFetchRecentlyPlayedQuery
  } = spotifyApi

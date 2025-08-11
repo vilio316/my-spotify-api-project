@@ -7,6 +7,7 @@ import { Header } from "./Header";
 import logo from '../assets/Spotify_Icon_RGB_Green.png'
 import { NowPlaying } from "./Now Playing";
 import { SongFromSearch } from "./SongComponents";
+import RecentlyPlayed from "./RecentlyPlayed";
 
 export default function ProfileUI(){
 
@@ -28,6 +29,7 @@ export function ProfileShort(){
     
     return(
         <>
+        <RecentlyPlayed/>
             {data? <>
             <h3>Profile Overview</h3>
             <p>Display Name : {data.display_name}</p>

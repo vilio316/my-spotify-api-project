@@ -1,13 +1,11 @@
 import { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { access_token, clearToken, storeToken } from "./store_slices/idSlice"
+import { access_token, storeToken } from "./store_slices/idSlice"
 import { Header } from "./components/Header";
 import { SearchProcessor} from "./components/SearchResults";
 import logoFile  from "../src/assets/Spotify_Icon_RGB_Black.png"
 import { ProfileShort } from "./components/ProfileLoad";
 import { useNavigate } from "react-router-dom";
-import { useFindUserQuery, useGetArtistAlbumsQuery } from "./loaders/apiSlice";
-import { Error } from "./components/Error";
 
 const generateRandomString = (length) => {
     const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -38,7 +36,7 @@ function App() {
   const CLIENT_ID = import.meta.env.VITE_CLIENT_ID ;
   const REDIRECT_URI = window.location.href;
   const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize"
-  const scopes = 'user-top-read user-read-private user-read-email user-read-currently-playing user-read-playback-state playlist-read-private playlist-read-collaborative'
+  const scopes = 'user-top-read user-read-private user-read-email user-read-currently-playing user-read-playback-state playlist-read-private playlist-read-collaborative user-read-recently-played'
   const CCM= 'S256'
   const RESPONSE_TYPE = "token"
   const [tokenVal, setToken] = useState("")

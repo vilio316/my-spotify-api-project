@@ -1,49 +1,74 @@
 import { useState, useEffect } from "react"
-import { useDispatch } from "react-redux"
-import { storeToken } from "./store_slices/idSlice"
+import { useDispatch, useSelector } from "react-redux"
+import { access_token, clearToken, storeToken } from "./store_slices/idSlice"
+import { Header } from "./components/Header";
+import { SearchProcessor} from "./components/SearchResults";
+import logoFile  from "../src/assets/Spotify_Icon_RGB_Black.png"
+import { ProfileShort } from "./components/ProfileLoad";
+import { useNavigate } from "react-router-dom";
+import { useFindUserQuery, useGetArtistAlbumsQuery } from "./loaders/apiSlice";
+import { Error } from "./components/Error";
+
+const generateRandomString = (length) => {
+    const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const values = crypto.getRandomValues(new Uint8Array(length));
+    return values.reduce((acc, x) => acc + possible[x % possible.length], "");
+  }
+  
+  const codeVerifier  = generateRandomString(64);
+  
+  const sha256 = async (plain) => {
+    const encoder = new TextEncoder()
+    const data = encoder.encode(plain)
+    return window.crypto.subtle.digest('SHA-256', data)
+  }
+  
+  const base64encode = (input) => {
+    return btoa(String.fromCharCode(...new Uint8Array(input)))
+      .replace(/=/g, '')
+      .replace(/\+/g, '-')
+      .replace(/\//g, '_');
+  }
+  
+  const hashed = async () => {await sha256(codeVerifier)}
+  const codeChallenge = base64encode(hashed);
+
 
 function App() {
-  const CLIENT_ID = "afef5d35bda94486a7b3661b54e2cdcb"
+  const CLIENT_ID = import.meta.env.VITE_CLIENT_ID ;
   const REDIRECT_URI = window.location.href;
   const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize"
+  const scopes = 'user-top-read user-read-private user-read-email user-read-currently-playing user-read-playback-state playlist-read-private playlist-read-collaborative'
+  const CCM= 'S256'
   const RESPONSE_TYPE = "token"
-  const [token, setToken] = useState("")
+  const [tokenVal, setToken] = useState("")
   const [artistName, setName] = useState("")
-  const [fetchResult , changeFetchResult] = useState({})
-  let dispatch = useDispatch()
+  let dispatch = useDispatch();
+  let token = useSelector(access_token)
+  const navigate = useNavigate();
+
+  const goThere = () => {
+    navigate("/user-profile")
+  }
+
+
+
+
   useEffect(() => {
       const hash = window.location.hash
-      console.log(hash)
-      let token = window.localStorage.getItem("token")
-
       if (!token && hash) {
           token = hash.substring(1).split("&").find(elem => elem.startsWith("access_token")).split("=")[1]
-
           window.location.hash = ""
-          window.localStorage.setItem("token", token)
       }
-      
       setToken(token)
       dispatch(storeToken(token))
-
   }, [])
 
   const logout = () => {
       setToken("")
-      window.localStorage.removeItem("token")
+      dispatch(storeToken(''))
   }
 
-  const searchForArtist = async (e) =>{
-    e.preventDefault();
-
-    let values = await fetch(`https://api.spotify.com/v1/search?q=${artistName}&type=track&limit=5`, {
-        headers: {
-            Authorization:`Bearer ${token}`
-         }
-    })
-    let oppen = await values.json();
-    changeFetchResult(oppen);
-  }
   return (
       <div className="App">
           <header className="App-header">
@@ -51,16 +76,50 @@ function App() {
               </header>
              
               {!token ?
-                  <a style={{borderRadius:"1.5rem", color: 'black', backgroundColor:"green", fontSize:"1.5rem", placeSelf:"center", padding: '0.5rem'}} href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}>Login
+              <>
+               <div style={{width:'100%', height:'80vh', display:"grid"}}>
+                <div style={{
+                  display: 'grid', 
+                  gridTemplateColumns:" auto auto", 
+                  placeSelf:"center",
+                  alignContent:"center",
+                  alignItems:"center",
+                  gap:'0.5rem',
+                  borderRadius:"2.5rem", color: 'black', backgroundColor:"green", fontSize:"1.5rem", padding: '0.5rem'
+                }}>
+                  <img src={logoFile} alt="Spotify Logo"  width="25rem"/>
+                  <a href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=${scopes}&code_challenge_method=${CCM}&code_challenge=${codeChallenge}`}>
+                    Log In 
                       to Spotify</a>
-                  : <>
-                  <form onSubmit={searchForArtist}>
-            <input type = "text" placeholder="Enter Artist Name" onChange={(e)=> setName(e.target.value)}/>
-            <button type="submit">SUBMIT, Fein</button>
+                      </div>
+                      </div>
+                
+                </>
+                  : 
+                  <>
+                  <Header/>
+                  <form>
+            <input type = "text" placeholder="Search for anything here..." style={{
+              outline: "none", border:"2px solid green", borderRadius:"1.25rem", fontSize:"1.5rem", padding: '0.25rem 0.5rem'
+              }} onChange={(e)=> { if(e.target.value.length > 0){
+                setName(e.target.value)
+                }}}/> 
+                <button className="clear_butt" onClick={()=> setName('')}>Clear</button>
+            <SearchProcessor search={artistName}/>
           </form>
-          <a href="/user-playlists">Click Me!</a>
-                  <button style={{outline: "none", borderRadius:"1rem", padding: '0.5rem', display:"block"}} onClick={logout}>Log Out</button></>}
-      </div>
+
+                  <h2>Your User Profile</h2>
+                  <div onClick={goThere}>
+                    <ProfileShort/>
+                  </div>
+              
+                  <button style={{outline: "none", border: "none", borderRadius:"2.5rem", padding: '0.5rem', display:"block", backgroundColor:"green", width:"12.5rem", fontSize: '1.5rem', margin: '0.5rem 0'}} onClick={logout}>Log 
+                  Out</button>
+                  </> 
+                  }
+            
+  </div>
+
   );
 }
 

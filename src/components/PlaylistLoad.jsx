@@ -1,5 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useGetPlaylistQuery } from "../loaders/apiSlice";
+import { Header } from "./Header";
+import { SongFromSearch } from "./SongComponents";
 
 export const popScore = (array) => {
     let popTotal = 0
@@ -20,28 +22,33 @@ export const makeTimeString = (ms_value) =>{
 
 export function Playlist(){
     const play_id = useParams()
-    console.log(play_id)
-
     const {data} = useGetPlaylistQuery(play_id.playID)
 
-    
-
     return(
-        <>
+        <div className="wrapper">
+        <Header/>
         {data ? <>
-        <p>{data.name}</p>
+        <h2>{data.name}</h2>
         <p><i>{data.description}</i></p>
+        <div id='song_card' style={{alignItems:"center", marginBottom:"1rem"}}>
+        <div className="grid song_container">
         <img src={data.images[0].url} alt={data.name}/>
-        <p>Items : {data.tracks.items.length} songs</p>
+        </div> 
+
+        <div>
+        <p style={{fontSize: '1.5rem'}}>Items : <b>{data.tracks.total}</b> songs</p>
+        <p>Popularity Score: <b>{popScore(data.tracks.items)}</b></p>
+        {data.tracks.total > 100? <p style={{
+            fontSize: '0.75rem'
+        }}>Showing first 100 songs</p>: <p></p>}
+        </div>
+        </div>
+     
         {data.tracks.items.map((track) => (
-            <div key={track.track.id}>
-                <p><a href={`/song/${track.track.id}`}>{track.track.name}</a></p>
-                <p> Duration: {makeTimeString(track.track.duration_ms)}</p>
-                <span></span>
-            </div>
+          <SongFromSearch object = {track.track} key={track.track.id}/>
         ))}
-        <p>Popularity Score: {popScore(data.tracks.items)}</p>
-        </> : <p>Loading... Please wait a moment</p>}
-        </>
+        </> : 
+        <p>Loading... Please wait a moment</p>}
+        </div>
     )
 }

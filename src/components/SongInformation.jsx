@@ -1,36 +1,59 @@
 import { useParams } from 'react-router-dom'
-import { useGetSongDetailsQuery, useGetTopItemsQuery } from '../loaders/apiSlice';
-import { makeTimeString } from "../components/PlaylistLoad"
+import { useGetSongDetailsQuery } from '../loaders/apiSlice';
+import { makeTimeString } from "./PlaylistLoad"
+import { Header } from './Header';
+import logo from '../assets/Spotify_Icon_RGB_Green.png'
 
 export default function SongInfo(){
     const id_value = useParams()
-    const parameter = id_value.songID;
 
-    const {data} = useGetSongDetailsQuery(parameter)
+    const {data, error} = useGetSongDetailsQuery(id_value.songID)
 
     return(
         <>
+        <Header/>
         {data? <>
-        <p>{data.name}</p>
-        {data.artists.map((artiste) => (
-            <span key={artiste.id}><i>{artiste.name} - </i></span>
-        ))}
-        <img src={data.album.images[1].url} alt={data.name} style={{display:"block", borderRadius:"1.25rem"}}/>
-        <p>From : {data.album.name}</p>
+        <div className='wrapper'>
+        <span style={{fontSize: "2.5rem", fontWeight:"bold"}}>{data.name}</span>
+        <p>
+            <span style={{
+            fontSize:"1.5rem"
+        }}>Artist(s)</span>: <span style={{fontSize:"1.5rem"}}>{
+            data.artists.length > 1? 
+            data.artists.map((artiste) => (
+            <span key={artiste.id}><a style={{textDecoration: "none"}} href={`/artists/${artiste.id}`}>{artiste.name} - </a></span>
+        )): <span>
+            <a style={{textDecoration: "none"}} href={`/artists/${data.artists[0].id}`}>{data.artists[0].name}</a></span>
+            }
+        </span>
+        </p>
+        <div id="song_card">
+            <div style={{justifyContent:"center", justifyItems:"center", display:"grid", alignContent:"center"}}>
+        <img src={data.album.images[1].url} alt={`${data.name}`} style={{display:"block", width:"85%"}}/>
+        </div>
+        <div style={{alignItems:"center", alignContent:"center", fontSize: "1.25rem"}}>
+        <p>Album : <a href={`/albums/${data.album.id}`} style={{
+            textDecoration: "underline", fontWeight: "bold"
+        }}>{data.album.name}</a></p>
+        <p>Release Date: {data.album.release_date}</p>
         <p> Duration : {makeTimeString(data.duration_ms) }</p>
         <p> Popularity Score: {data.popularity}</p>
+        </div>
+        </div>
+            <div style={{display: 'grid', gridTemplateColumns:"3rem auto", alignItems:"center"}}>
+                <img src={logo} style={{width: '2rem', borderRadius:"0.5rem"}}></img>
+               <p style={{fontSize: "1.5rem", textDecoration:"underline"}}> <a href={data.external_urls.spotify}>Listen on Spotify</a>
+            </p>
+        
+            </div>
+            </div>
         </>
-        : <p>Loading...</p>}
-        <Excalibur/>
-        </>
-    )
-}
-function Excalibur(){
-    const {data} = useGetTopItemsQuery("artists")
-    
-    return(
-        <>
-        {data? <p>YEs</p>: <p>No</p>}
+
+        : <>
+        {error ? <p>
+            {error.status} : {error.data.error.message}
+        </p> : <p>Loading...</p>}
+        </>}
         </>
     )
 }

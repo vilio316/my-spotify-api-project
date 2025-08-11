@@ -154,6 +154,9 @@ a:hover{
 #playback_monitor_container{
     width: 65%
 }
+.block{
+    display: block;
+}
 .header_links{
     font-size: 1rem;
     display: block;

@@ -70,7 +70,7 @@ function App() {
   return (
       <div className="App">
           <header className="App-header">
-              <h1>SongInformer v1.0</h1>
+              <h1>SongInformer</h1>
               </header>
              
               {!token ?

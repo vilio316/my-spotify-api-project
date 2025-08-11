@@ -1,7 +1,6 @@
-import { Link, useLoaderData, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from 'react-redux'
-import { access_token } from "../store_slices/idSlice";
-import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+
+import { useState } from "react";
 import { useFindUserQuery, useFindUserDetailsQuery, useFindUserTopItemsQuery, useFindUserTopArtistsQuery } from "../loaders/apiSlice";
 import { Header } from "./Header";
 import logo from '../assets/Spotify_Icon_RGB_Green.png'
@@ -18,6 +17,7 @@ export default function ProfileUI(){
         <h2><u>Your Profile Data</u></h2>
         <NowPlaying/>
         <ProfileShort/>
+        <RecentlyPlayed/>
         <ShowTopItems/>    
         </div>
         </>
@@ -29,7 +29,7 @@ export function ProfileShort(){
     
     return(
         <>
-        <RecentlyPlayed/>
+     
             {data? <>
             <h3>Profile Overview</h3>
             <p>Display Name : {data.display_name}</p>

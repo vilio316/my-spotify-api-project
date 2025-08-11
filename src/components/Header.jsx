@@ -11,16 +11,21 @@ export function Header(){
     return(
         <>
         {data ? <div style={{position:"relative"}} onMouseEnter={() => setState(true)} onMouseLeave={()=> setState(false)}>
-            <p style={{
+            <div style={{
                 fontSize: "1.25rem", 
                 color:"black", 
                 backgroundColor:"green", 
                 padding: "1.25rem", 
                 borderRadius:"1.25rem",
-                textAlign: "right"
+                margin: "0.5rem",
+                display: 'flex',
+                gap: '0.5rem',
+                justifyContent: 'end', 
+                alignContent: "center"
                 }}>
+        <img src={data.images[0].url} width={40} style={{borderRadius: '50%'}} />
         <a>{data.display_name}</a>
-        </p>
+        </div>
         
         {state ?
         <div style={{position: "absolute", width:"12.5rem", right: '0', top: "1.5rem", zIndex:"2", padding:"0.75rem 0.5rem", backgroundColor: 'rgba(0, 205, 0, 0.75)', borderRadius:"1rem" }}>

@@ -56,18 +56,16 @@ export function RecentlySong(props){
     const item_obj = props.item
     return(
         <div className="grid" style={{
-            gridTemplateColumns: "12.5% 70%"
+            gridTemplateColumns: "12.5% 70%", alignItems: "center"
         }}>
-            <div className="grid" style={{
-                justifyContent: "center"
-            }}>
-            <img src = {item_obj.track.album.images[1].url} style={{
-                width: "90%"
-            }}/>
+            <div className="grid" >
+            <img src = {item_obj.track.album.images[1].url} className="search_image" />
             </div>
-            <div>
-                <p id="song_title">{item_obj.track.name}</p>
-                <p>{item_obj.track.album.artists[0].name}</p>
+            <div style={{padding: '0.5rem'}}>
+                <a href={`/song/${item_obj.track.id}`} className="block" style={{
+                    fontSize: "1.25rem", margin: "0.5rem"
+                }}>{item_obj.track.name}</a>
+                <a className={`block`} href={`/artists/${item_obj.track.artists[0].id}`}>{item_obj.track.album.artists[0].name}</a>
             </div>
         </div>
     )

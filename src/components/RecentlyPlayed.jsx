@@ -2,7 +2,11 @@ import { useFetchRecentlyPlayedQuery } from "../loaders/apiSlice";
 import { RecentlySong } from "./SongComponents";
 
 export default function RecentlyPlayed(){
-    const {data} = useFetchRecentlyPlayedQuery(1754930000000)
+    const {data} = useFetchRecentlyPlayedQuery(1754930000000, {
+        pollingInterval: 60000,
+        skipPollingIfUnfocused: false,
+        
+    })
     console.log(data)
     return(
         <div style={{margin: '0.5rem 0'}}>
